@@ -2,11 +2,19 @@ version: '3.0'
 
 # Ignore this`expectation` block. It is required but not used, and will be removed in future versions.
 expectations:
-  population_size: 1000
+  population_size: 5000
 
 actions:
-  generate_dataset:
-    run: ehrql:v1 generate-dataset analysis/dataset_definition.py --output output/dataset.csv.gz
+  generate_dataset_full:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition_core.py --output output/full_dataset.csv.gz
     outputs:
       highly_sensitive:
-        dataset: output/dataset.csv.gz
+        full_dataset: output/full_dataset.csv.gz
+  
+  generate_charts:
+    run: python:v2 python analysis/report.py
+    needs: [generate_dataset_full]
+    outputs:
+      moderately_sensitive:
+        chart1: output/adhd_events_per_year_by_sex.png
+        chart2: output/methylphenidate_prescriptions_per_year_by_sex.png
