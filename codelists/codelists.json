@@ -1,3 +1,22 @@
 {
-  "files": {}
+  "files": {
+    "nhsd-primary-care-domain-refsets-adhd_cod.csv": {
+      "id": "nhsd-primary-care-domain-refsets/adhd_cod/20200812",
+      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/adhd_cod/20200812/",
+      "downloaded_at": "2024-05-07 12:42:54.469746Z",
+      "sha": "f4b0e9129b1ed84eb45b39b5409694ea4c591e21"
+    },
+    "opensafely-ethnicity.csv": {
+      "id": "opensafely/ethnicity/2020-04-27",
+      "url": "https://www.opencodelists.org/codelist/opensafely/ethnicity/2020-04-27/",
+      "downloaded_at": "2024-05-07 12:42:54.557736Z",
+      "sha": "3d2f3998b71863a80b24d60f6f4282e14191ae13"
+    },
+    "opensafely-methylphenidate-dmd.csv": {
+      "id": "opensafely/methylphenidate-dmd/1e051e13",
+      "url": "https://www.opencodelists.org/codelist/opensafely/methylphenidate-dmd/1e051e13/",
+      "downloaded_at": "2024-05-17 08:51:52.314177Z",
+      "sha": "29acf54d625ca5f7f883b357e2490e04f8ba0cb4"
+    }
+  }
 }
