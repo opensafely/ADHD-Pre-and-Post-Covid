@@ -3,6 +3,7 @@ from ehrql.tables.tpp import patients, practice_registrations, clinical_events, 
 
 # Codelists
 adhd_codelist = codelist_from_csv("codelists/nhsd-primary-care-domain-refsets-adhd_cod.csv", column="code")
+methylphenidate_codelist = codelist_from_csv("codelists/nhsd-primary-care-domain-refsets-adhd_cod.csv", column="code")
 
 dataset = create_dataset()
 dataset.configure_dummy_data(population_size=10000)
