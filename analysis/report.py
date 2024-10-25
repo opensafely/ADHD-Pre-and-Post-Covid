@@ -18,3 +18,9 @@ adhd_events = data.melt(
     value_name='num_adhd_events'
 )
 
+#Computing ADHD disgnosis 
+
+adhd_total_sex_table = data.groupby(['sex']).count()
+adhd_total_sex_table = adhd_total_sex_table.drop(['patient_id'],axis=1)
+
+adhd_dia_sex_table = data.
