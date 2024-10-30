@@ -68,5 +68,3 @@ for year in years:
 
 dataset.sex = patients.sex
 dataset.dob = patients.date_of_birth
-
-
