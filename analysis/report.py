@@ -36,3 +36,4 @@ adhd_dia_sex_table = adhd_dia_sex_table.drop(['patient_id','dob'],axis=1)
 prevelnce = adhd_dia_sex_table/adhd_total_sex_table
 
 #Need to save the table
+prevelnce.to_csv('output/results_saved.csv')

@@ -16,5 +16,4 @@ actions:
     needs: [generate_dataset_full]
     outputs:
       moderately_sensitive:
-        chart1: output/adhd_events_per_year_by_sex.png
-        chart2: output/methylphenidate_prescriptions_per_year_by_sex.png
+        table1: output/results_saved.csv
