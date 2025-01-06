@@ -20,10 +20,3 @@ actions:
     outputs:
       moderately_sensitive:
         measure: output/adhd_prevalence.csv
-  
-  generate_charts:
-    run: python:v2 python analysis/report.py
-    needs: [generate_dataset]
-    outputs:
-      moderately_sensitive:
-        table1: output/results_saved.csv
