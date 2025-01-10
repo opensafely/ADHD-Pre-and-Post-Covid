@@ -9,7 +9,7 @@ from ehrql.tables.tpp import (
 from codelists import adhd_codelist, methylphenidate_codelist
 
 measures = create_measures()
-measures.configure_dummy_data(population_size=10)
+measures.configure_dummy_data(population_size=10000)
 
 # Population variables
 has_registration = practice_registrations.spanning(
@@ -50,5 +50,5 @@ measures.define_measure(
         & patients.is_alive_on(INTERVAL.start_date)
     ),
     group_by={"sex": sex, "age_band": age_band},
-    intervals=years(7).starting_on("2016-01-01"),
+    intervals=years(3).starting_on("2016-01-01"),
 )
