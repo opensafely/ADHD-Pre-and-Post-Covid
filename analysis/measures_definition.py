@@ -6,7 +6,26 @@ from ehrql.tables.tpp import (
     medications,
 )
 
-from codelists import adhd_codelist, methylphenidate_codelist
+from codelists import adhd_codelist, adhdrem_codelist, methylphenidate_codelist
+
+# Helper function for finding the last matching event
+def last_matching_event(events, codelist, where=True):
+    """_summary_
+
+    Args:
+        events (clinical_events): _description_
+        codelist (codelist): _description_
+        where (bool, optional): _description_. Defaults to True.
+
+    Returns:
+        _type_: _description_
+    """
+    return (
+        events.where(where)
+        .where(events.snomedct_code.is_in(codelist))
+        .sort_by(events.date)
+        .last_for_patient()
+    )
 
 measures = create_measures()
 measures.configure_dummy_data(population_size=10000)
@@ -27,17 +46,23 @@ age_band = case(
     when(age.is_null()).then("Missing"),
 )
 
+#Rule 1: ADHD_DAT is the date defined  = Latest <= RPED
 selected_events = clinical_events.where(
-    clinical_events.date.is_on_or_between(INTERVAL.start_date, INTERVAL.end_date)
+    clinical_events.date.is_on_or_before(INTERVAL.end_date)
 )
 
-selected_medications = medications.where(
-    medications.date.is_on_or_between(INTERVAL.start_date, INTERVAL.end_date)
-)
+#Rule 2: ADHDREM = NULL or ADHD_DAT > ADHDREM_DAT
 
-has_adhd_event = selected_events.where(
+has_adhd_cod_event = selected_events.where(
     clinical_events.snomedct_code.is_in(adhd_codelist)
 ).exists_for_patient()
+
+has_adhdrem_cod_event = selected_events.where(
+    clinical_events.snomedct_code.is_in(adhd_codelist)
+).exists_for_patient()
+
+
+
 
 measures.define_measure(
     name=f"adhd_prevalence",
