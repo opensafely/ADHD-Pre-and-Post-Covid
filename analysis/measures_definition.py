@@ -46,27 +46,24 @@ age_band = case(
     when(age.is_null()).then("Missing"),
 )
 
-#Rule 1: ADHD_DAT is the date defined  = Latest <= RPED
+#In terms of dates -  Latest <= RPED
 selected_events = clinical_events.where(
     clinical_events.date.is_on_or_before(INTERVAL.end_date)
 )
 
-#Rule 2: ADHDREM = NULL or ADHD_DAT > ADHDREM_DAT
+has_adhd_cod_date = last_matching_event(selected_events, adhd_codelist).date
 
-has_adhd_cod_event = selected_events.where(
-    clinical_events.snomedct_code.is_in(adhd_codelist)
-).exists_for_patient()
+has_aadhdrem_cod_date = last_matching_event(selected_events, adhdrem_codelist).date
 
-has_adhdrem_cod_event = selected_events.where(
-    clinical_events.snomedct_code.is_in(adhd_codelist)
-).exists_for_patient()
+has_adhd_rule_1 = has_adhd_cod_date.is_not_null()
 
+has_adhd_rule_2 = (has_aadhdrem_cod_date.is_null()) | (has_adhd_cod_date > has_aadhdrem_cod_date)
 
-
+has_adhd_rule_1_and_2 = has_adhd_rule_1 & has_adhd_rule_2
 
 measures.define_measure(
     name=f"adhd_prevalence",
-    numerator=has_adhd_event,
+    numerator=has_adhd_rule_1_and_2,
     denominator=(
         has_registration
         & patients.sex.is_in(["male", "female"])
