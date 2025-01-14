@@ -75,5 +75,5 @@ measures.define_measure(
         & patients.is_alive_on(INTERVAL.start_date)
     ),
     group_by={"sex": sex, "age_band": age_band},
-    intervals=years(3).starting_on("2016-01-01"),
+    intervals=years(3).starting_on("2021-04-01"),
 )
