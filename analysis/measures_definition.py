@@ -10,15 +10,15 @@ from codelists import adhd_codelist, adhdrem_codelist, methylphenidate_codelist
 
 # Helper function for finding the last matching event
 def last_matching_event(events, codelist, where=True):
-    """_summary_
+    """Select the last matching SNOMED CT event from specified codelist
 
     Args:
-        events (clinical_events): _description_
-        codelist (codelist): _description_
+        events (e.g., clinical_events or ): Many rows per patient event frame to select last matching event from codelist from
+        codelist (codelist): Clinical codelist, must be using snomedct codes
         where (bool, optional): _description_. Defaults to True.
 
     Returns:
-        _type_: _description_
+        patient frame: One row per patient frame, with the last matching event from codelist
     """
     return (
         events.where(where)
