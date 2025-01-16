@@ -57,7 +57,7 @@ selected_events = clinical_events.where(
 
 has_adhd_cod_date = last_matching_event(selected_events, adhd_codelist).date
 
-has_aadhdrem_cod_date = last_matching_event(selected_events, adhdrem_codelist).date
+has_adhdrem_cod_date = last_matching_event(selected_events, adhdrem_codelist).date
 
 has_adhd_rule_1 = has_adhd_cod_date.is_not_null()
 
