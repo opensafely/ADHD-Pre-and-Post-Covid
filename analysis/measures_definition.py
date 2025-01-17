@@ -69,6 +69,11 @@ has_adhd_rule_2 = (has_adhdrem_cod_date.is_null()) | (has_adhd_cod_date > has_ad
 
 has_adhd_rule_1_and_2 = has_adhd_rule_1 & has_adhd_rule_2
 
+#Adding medication
+selected_medications = medications.where(
+    medications.date.is_on_or_before(INTERVAL.end_date)
+)
+
 measures.define_measure(
     name=f"adhd_prevalence",
     numerator=has_adhd_rule_1_and_2,
