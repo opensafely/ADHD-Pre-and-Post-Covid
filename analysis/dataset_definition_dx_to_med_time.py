@@ -27,7 +27,7 @@ def last_matching_event(events, codelist, where=True):
     )
 
 dataset = create_dataset()
-dataset.configure_dummy_data(population_size=10)
+dataset.configure_dummy_data(population_size=1000)
 
 # Date range
 start_date = "2016-01-01"
@@ -52,9 +52,9 @@ has_adhd_event = selected_events.where(
     clinical_events.snomedct_code.is_in(adhd_codelist)
 ).exists_for_patient()
 
-dataset.has_mph_med = selected_medications.where(
-    medications.dmd_code.is_in(methylphenidate_codelist)
-).exists_for_patient()
+# dataset.has_mph_med = selected_medications.where(
+#     medications.dmd_code.is_in(methylphenidate_codelist)
+# ).exists_for_patient()
 
 dataset.adhd_cod_date = last_matching_event(selected_events, adhd_codelist).date
 
@@ -68,5 +68,6 @@ dataset.define_population(
     & dataset.sex.is_in(["male", "female"])
     & (dataset.age >= 18)
     & (dataset.age <= 120)
-    & patients.is_alive_on(start_date),
+    & patients.is_alive_on(start_date)
+    & dataset.mph_med_date.is_not_null(),
 )
