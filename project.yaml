@@ -7,7 +7,7 @@ expectations:
 actions:
   generate_dataset:
     run: > 
-      ehrql:v1 generate-dataset analysis/dataset_definition_core.py 
+      ehrql:v1 generate-dataset analysis/dataset_definition_dx_to_med_time.py
       --output output/adhd_dataset.csv.gz
     outputs:
       highly_sensitive:

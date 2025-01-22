@@ -23,16 +23,16 @@ dataset.sex = patients.sex
 dataset.age = patients.age_on(start_date)
 
 selected_events = clinical_events.where(
-    clinical_events.date.is_on_or_before(end_date)
+    clinical_events.date.is_on_or_between(start_date, end_date)
 )
 
 selected_medications = medications.where(
-    medications.date.is_on_or_before(end_date)
+    medications.date.is_on_or_between(start_date, end_date)
 )
 
 dataset.has_adhd_event = selected_events.where(
     clinical_events.snomedct_code.is_in(adhd_codelist)
-).first_for_patient()
+).exists_for_patient()
 
 dataset.has_mph_med = selected_medications.where(
     medications.dmd_code.is_in(methylphenidate_codelist)
@@ -41,6 +41,7 @@ dataset.has_mph_med = selected_medications.where(
 dataset.define_population(
     has_registration
     & dataset.sex.is_in(["male", "female"])
+    & (dataset.age >= 18)
     & (dataset.age <= 120)
-    & patients.is_alive_on(end_date),
+    & patients.is_alive_on(start_date),
 )
