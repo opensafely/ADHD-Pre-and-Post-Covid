@@ -8,6 +8,24 @@ from ehrql.tables.tpp import (
 
 from codelists import adhd_codelist, methylphenidate_codelist
 
+def last_matching_event(events, codelist, where=True):
+    """Select the last matching SNOMED CT event from specified codelist
+
+    Args:
+        events (e.g., clinical_events or ): Many rows per patient event frame to select last matching event from codelist from
+        codelist (codelist): Clinical codelist, must be using snomedct codes
+        where (bool, optional): _description_. Defaults to True.
+
+    Returns:
+        patient frame: One row per patient frame, with the last matching event from codelist
+    """
+    return (
+        events.where(where)
+        .where(events.snomedct_code.is_in(codelist))
+        .sort_by(events.date)
+        .last_for_patient()
+    )
+
 dataset = create_dataset()
 dataset.configure_dummy_data(population_size=10)
 
@@ -30,13 +48,20 @@ selected_medications = medications.where(
     medications.date.is_on_or_between(start_date, end_date)
 )
 
-dataset.has_adhd_event = selected_events.where(
+has_adhd_event = selected_events.where(
     clinical_events.snomedct_code.is_in(adhd_codelist)
 ).exists_for_patient()
 
 dataset.has_mph_med = selected_medications.where(
     medications.dmd_code.is_in(methylphenidate_codelist)
 ).exists_for_patient()
+
+dataset.adhd_cod_date = last_matching_event(selected_events, adhd_codelist).date
+
+dataset.mph_med_date = selected_medications.where(True)\
+    .where(selected_medications.dmd_code.is_in(methylphenidate_codelist))\
+    .sort_by(selected_medications.date)\
+    .last_for_patient().date
 
 dataset.define_population(
     has_registration
