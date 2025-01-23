@@ -45,7 +45,7 @@ selected_events = clinical_events.where(
 )
 
 selected_medications = medications.where(
-    medications.date.is_on_or_between(start_date, end_date)
+    medications.date.is_on_or_after(start_date)
 )
 
 has_adhd_event = selected_events.where(
