@@ -30,8 +30,8 @@ dataset = create_dataset()
 dataset.configure_dummy_data(population_size=10)
 
 # Date range
-start_date = "2016-01-01"
-end_date = "2023-12-31"
+start_date = "2016-04-01"
+end_date = "2017-03-31"
 
 # Population variables
 has_registration = practice_registrations.spanning(
@@ -58,6 +58,8 @@ dataset.mph_med_date = selected_medications.where(True)\
     .where(selected_medications.dmd_code.is_in(methylphenidate_codelist))\
     .sort_by(selected_medications.date)\
     .first_for_patient().date
+
+dataset.times_between_dia_med_weeks = (dataset.mph_med_date - dataset.adhd_cod_date).weeks
 
 dataset.define_population(
     has_registration
