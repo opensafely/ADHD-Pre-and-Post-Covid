@@ -17,4 +17,9 @@ output = adhd_data['times_between_dia_med_weeks'].value_counts(bins = week_bin)
 output = output.rename_axis('Weeks between Dia and Med')
 output = output.rename('Patient Counts')
 
+#Small number supppression
+rounding_unit = 10
+output = np.ceil((output/rounding_unit))
+output = output*rounding_unit
+
 output.to_csv('output/adhd_dia_med_gap_weeks.csv')

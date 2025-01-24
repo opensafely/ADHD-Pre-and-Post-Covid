@@ -40,6 +40,7 @@ has_registration = practice_registrations.spanning(
 dataset.sex = patients.sex
 dataset.age = patients.age_on(start_date)
 
+# Setting up the dates
 selected_events = clinical_events.where(
     clinical_events.date.is_on_or_between(start_date, end_date)
 )
@@ -47,6 +48,7 @@ selected_events = clinical_events.where(
 selected_medications = medications.where(
     medications.date.is_on_or_after(start_date)
 )
+
 
 has_adhd_event = selected_events.where(
     clinical_events.snomedct_code.is_in(adhd_codelist)
