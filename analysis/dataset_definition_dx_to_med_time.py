@@ -49,11 +49,12 @@ selected_medications = medications.where(
     medications.date.is_on_or_after(start_date)
 )
 
-
+# Filtering with the codelists
 has_adhd_event = selected_events.where(
     clinical_events.snomedct_code.is_in(adhd_codelist)
 ).exists_for_patient()
 
+# Picking the last date for dia and first date for med
 dataset.adhd_cod_date = last_matching_event(selected_events, adhd_codelist).date
 
 dataset.mph_med_date = selected_medications.where(True)\
@@ -61,8 +62,10 @@ dataset.mph_med_date = selected_medications.where(True)\
     .sort_by(selected_medications.date)\
     .first_for_patient().date
 
+# Compute the date gap
 dataset.times_between_dia_med_weeks = (dataset.mph_med_date - dataset.adhd_cod_date).weeks
 
+# Computing the population records
 dataset.define_population(
     has_registration
     & dataset.sex.is_in(["male", "female"])
