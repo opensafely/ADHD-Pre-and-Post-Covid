@@ -6,7 +6,11 @@ from ehrql.tables.tpp import (
     medications,
 )
 
-from codelists import adhd_codelist, methylphenidate_codelist
+from codelists import (
+    adhd_codelist,
+    adhdrem_codelist, 
+    methylphenidate_codelist
+)
 
 def last_matching_event(events, codelist, where=True):
     """Select the last matching SNOMED CT event from specified codelist
@@ -27,7 +31,7 @@ def last_matching_event(events, codelist, where=True):
     )
 
 dataset = create_dataset()
-dataset.configure_dummy_data(population_size=10)
+dataset.configure_dummy_data(population_size=5)
 
 # Date range
 start_date = "2016-04-01"
@@ -38,7 +42,7 @@ has_registration = practice_registrations.spanning(
     start_date, end_date
 ).exists_for_patient()
 dataset.sex = patients.sex
-dataset.age = patients.age_on(start_date)
+dataset.age = patients.age_on(end_date)
 
 # Setting up the dates
 selected_events = clinical_events.where(
@@ -57,6 +61,17 @@ has_adhd_event = selected_events.where(
 # Picking the last date for dia and first date for med
 dataset.adhd_cod_date = last_matching_event(selected_events, adhd_codelist).date
 
+dataset.has_adhdrem_cod_date = last_matching_event(selected_events, adhdrem_codelist).date
+
+#Number of counts for ADHD diagonsis and readmission
+dataset.count_adhd_diagnoses = selected_events.where(
+    clinical_events.snomedct_code.is_in(adhd_codelist)
+).count_for_patient()
+
+dataset.count_adhd_resolved = selected_events.where(
+    clinical_events.snomedct_code.is_in(adhd_codelist)
+).count_for_patient()
+
 dataset.mph_med_date = selected_medications.where(True)\
     .where(selected_medications.dmd_code.is_in(methylphenidate_codelist))\
     .sort_by(selected_medications.date)\
@@ -73,5 +88,6 @@ dataset.define_population(
     & patients.is_alive_on(start_date)
     & dataset.adhd_cod_date.is_not_null()
     & dataset.mph_med_date.is_not_null()
+    & (dataset.has_adhdrem_cod_date <= dataset.adhd_cod_date)
     & (dataset.adhd_cod_date <= dataset.mph_med_date)
 )
