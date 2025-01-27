@@ -59,7 +59,7 @@ has_adhd_event = selected_events.where(
 ).exists_for_patient()
 
 # Picking the last date for dia and first date for med
-dataset.adhd_cod_date = last_matching_event(selected_events, adhd_codelist).date
+dataset.latests_adhd_diagnosis_date = last_matching_event(selected_events, adhd_codelist).date
 
 dataset.has_adhdrem_cod_date = last_matching_event(selected_events, adhdrem_codelist).date
 
@@ -78,7 +78,7 @@ dataset.mph_med_date = selected_medications.where(True)\
     .first_for_patient().date
 
 # Compute the date gap
-dataset.times_between_dia_med_weeks = (dataset.mph_med_date - dataset.adhd_cod_date).weeks
+dataset.times_between_dia_med_weeks = (dataset.mph_med_date - dataset.latests_adhd_diagnosis_date).weeks
 
 # Computing the population records
 dataset.define_population(
@@ -86,8 +86,8 @@ dataset.define_population(
     & dataset.sex.is_in(["male", "female"])
     & (dataset.age <= 120)
     & patients.is_alive_on(start_date)
-    & dataset.adhd_cod_date.is_not_null()
+    & dataset.latests_adhd_diagnosis_date.is_not_null()
     & dataset.mph_med_date.is_not_null()
-    & (dataset.has_adhdrem_cod_date <= dataset.adhd_cod_date)
-    & (dataset.adhd_cod_date <= dataset.mph_med_date)
+    & (dataset.has_adhdrem_cod_date <= dataset.latests_adhd_diagnosis_date)
+    & (dataset.latests_adhd_diagnosis_date <= dataset.mph_med_date)
 )
