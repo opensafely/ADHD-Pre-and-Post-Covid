@@ -61,6 +61,7 @@ dataset.count_adhd_resolved = selected_events.where(
 dataset.first_mph_med_date = (
     selected_medications.where(True)
     .where(selected_medications.dmd_code.is_in(methylphenidate_codelist))
+    .where(selected_medications.date.is_on_or_after(dataset.latests_adhd_diagnosis_date))
     .sort_by(selected_medications.date)
     .first_for_patient()
     .date
