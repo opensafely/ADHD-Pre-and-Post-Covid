@@ -28,37 +28,30 @@ has_registration = practice_registrations.spanning(
 dataset.sex = patients.sex
 dataset.age = patients.age_on(end_date)
 
-# Setting up the dates
-selected_events = clinical_events.where(
-    clinical_events.date.is_on_or_between(start_date, end_date)
-)
-
-selected_medications = medications.where(medications.date.is_on_or_after(start_date))
-
 # Filtering with the codelists
-has_adhd_event = selected_events.where(
+has_adhd_event = clinical_events.where(
     clinical_events.snomedct_code.is_in(adhd_codelist)
 ).exists_for_patient()
 
 # Picking the last date for dia and first date for med
 dataset.first_adhd_diagnosis_date = first_matching_event(
-    selected_events, adhd_codelist
+    clinical_events, adhd_codelist
 ).date
 
 # Number of counts for ADHD diagonsis and readmission
-dataset.count_adhd_diagnoses = selected_events.where(
+dataset.count_adhd_diagnoses = clinical_events.where(
     clinical_events.snomedct_code.is_in(adhd_codelist)
 ).count_for_patient()
 
-dataset.count_adhd_resolved = selected_events.where(
+dataset.count_adhd_resolved = clinical_events.where(
     clinical_events.snomedct_code.is_in(adhd_codelist)
 ).count_for_patient()
 
 dataset.first_mph_med_date = (
-    selected_medications.where(True)
-    .where(selected_medications.dmd_code.is_in(methylphenidate_codelist))
-    .where(selected_medications.date.is_on_or_after(dataset.first_adhd_diagnosis_date))
-    .sort_by(selected_medications.date)
+    medications.where(True)
+    .where(medications.dmd_code.is_in(methylphenidate_codelist))
+    .where(medications.date.is_on_or_after(dataset.first_adhd_diagnosis_date))
+    .sort_by(medications.date)
     .first_for_patient()
     .date
 )
