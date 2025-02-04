@@ -6,7 +6,7 @@ from ehrql.tables.tpp import (
     medications,
 )
 
-from variables_library import last_matching_event
+from variables_library import first_matching_event
 
 from codelists import (
     adhd_codelist,
@@ -41,12 +41,8 @@ has_adhd_event = selected_events.where(
 ).exists_for_patient()
 
 # Picking the last date for dia and first date for med
-dataset.latests_adhd_diagnosis_date = last_matching_event(
+dataset.first_adhd_diagnosis_date = first_matching_event(
     selected_events, adhd_codelist
-).date
-
-dataset.latest_adhdrem_cod_date = last_matching_event(
-    selected_events, adhdrem_codelist
 ).date
 
 # Number of counts for ADHD diagonsis and readmission
@@ -61,7 +57,7 @@ dataset.count_adhd_resolved = selected_events.where(
 dataset.first_mph_med_date = (
     selected_medications.where(True)
     .where(selected_medications.dmd_code.is_in(methylphenidate_codelist))
-    .where(selected_medications.date.is_on_or_after(dataset.latests_adhd_diagnosis_date))
+    .where(selected_medications.date.is_on_or_after(dataset.first_adhd_diagnosis_date))
     .sort_by(selected_medications.date)
     .first_for_patient()
     .date
@@ -69,7 +65,7 @@ dataset.first_mph_med_date = (
 
 # Compute the date gap
 dataset.times_between_dia_med_weeks = (
-    dataset.first_mph_med_date - dataset.latests_adhd_diagnosis_date
+    dataset.first_mph_med_date - dataset.first_adhd_diagnosis_date
 ).weeks
 
 # Computing the population records
@@ -78,8 +74,6 @@ dataset.define_population(
     & dataset.sex.is_in(["male", "female"])
     & (dataset.age <= 120)
     & patients.is_alive_on(start_date)
-    & dataset.latests_adhd_diagnosis_date.is_not_null()
+    & dataset.first_adhd_diagnosis_date.is_not_null()
     & dataset.first_mph_med_date.is_not_null()
-    & (dataset.latest_adhdrem_cod_date <= dataset.latests_adhd_diagnosis_date)
-    & (dataset.latests_adhd_diagnosis_date <= dataset.first_mph_med_date)
 )
