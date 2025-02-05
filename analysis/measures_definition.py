@@ -1,9 +1,7 @@
-from ehrql import INTERVAL, case, create_measures, when, years
+from ehrql import INTERVAL, create_measures, years
 from ehrql.tables.tpp import (
-    patients,
     practice_registrations,
     clinical_events,
-    medications,
 )
 
 from codelists import adhd_codelist
