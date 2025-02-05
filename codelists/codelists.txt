@@ -1,6 +1,8 @@
 nhsd-primary-care-domain-refsets/adhd_cod/20200812
 nhsd-primary-care-domain-refsets/adhdrem_cod/20200812/
 nhsd-primary-care-domain-refsets/ld_cod/20241205
+opensafely/learning-disabilities/2020-07-06
+nhsd-primary-care-domain-refsets/brain-cancer-diagnosis-codes/20241205
 
 opensafely/ethnicity/2020-04-27
 opensafely/methylphenidate-dmd/1e051e13

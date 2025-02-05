@@ -18,6 +18,18 @@
       "downloaded_at": "2025-01-14 15:30:09.521564Z",
       "sha": "5736aa719b642b400b523dde26d62c56f0136c4c"
     },
+    "opensafely-learning-disabilities.csv": {
+      "id": "opensafely/learning-disabilities/2020-07-06",
+      "url": "https://www.opencodelists.org/codelist/opensafely/learning-disabilities/2020-07-06/",
+      "downloaded_at": "2025-01-29 12:39:05.648539Z",
+      "sha": "ab5b5f60e8525af5898ec1066fc820501b8e5e29"
+    },
+    "nhsd-primary-care-domain-refsets-brain-cancer-diagnosis-codes.csv": {
+      "id": "nhsd-primary-care-domain-refsets/brain-cancer-diagnosis-codes/20241205",
+      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/brain-cancer-diagnosis-codes/20241205/",
+      "downloaded_at": "2025-01-29 13:21:26.390176Z",
+      "sha": "60e30b6698bd4a1d9828fc2e67b5d072a8722f0f"
+    },
     "opensafely-ethnicity.csv": {
       "id": "opensafely/ethnicity/2020-04-27",
       "url": "https://www.opencodelists.org/codelist/opensafely/ethnicity/2020-04-27/",
