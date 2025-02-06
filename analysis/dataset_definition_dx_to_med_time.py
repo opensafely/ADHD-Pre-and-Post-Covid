@@ -14,8 +14,6 @@ from codelists import (
     methylphenidate_codelist,
 )
 
-from variables_library import last_matching_event
-
 dataset = create_dataset()
 dataset.configure_dummy_data(population_size=5)
 
