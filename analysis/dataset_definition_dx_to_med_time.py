@@ -66,7 +66,7 @@ dataset.define_population(
     has_registration
     & dataset.sex.is_in(["male", "female"])
     & (dataset.age <= 120)
-    & patients.is_alive_on(start_date)
+    & patients.is_alive_on(end_date)
     & dataset.first_adhd_diagnosis_date.is_not_null()
     & dataset.first_mph_med_date.is_not_null()
 )
