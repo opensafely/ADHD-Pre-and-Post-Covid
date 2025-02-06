@@ -12,11 +12,11 @@ adhd_data = pd.read_csv("output/adhd_dataset.csv.gz")
 week_bin = [0,1,2,4,8,12,21,52,104]
 
 # Placing into a histogram
-output = adhd_data['times_between_dia_med_weeks'].value_counts(bins = week_bin)
+output = adhd_data['times_between_dia_med_weeks'].value_counts(bins = week_bin).sort_index()
 
 #Need to label the outputs 
 output = output.rename_axis('Weeks between Dia and Med')
-output = output.rename('Patient Counts')
+output = output.rename('FAKE DATA Patient Counts')
 
 #Small number supppression
 rounding_unit = 10
