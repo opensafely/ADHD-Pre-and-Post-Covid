@@ -10,7 +10,6 @@ from variables_library import first_matching_event
 
 from codelists import (
     adhd_codelist,
-    adhdrem_codelist,
     adhd_medication_codelist,
 )
 
