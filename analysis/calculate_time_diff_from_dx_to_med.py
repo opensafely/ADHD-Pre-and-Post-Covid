@@ -15,8 +15,8 @@ week_bin = [0, 1, 2, 4, 8, 12, 21, 52, 104]
 output = adhd_data["times_between_dia_med_weeks"].value_counts(bins=week_bin)
 
 # Need to label the outputs
-output = output.rename_axis("weeks_between_dx_and_med_date")
-output = output.rename("counts")
+output = output.rename_axis("FAKE_DATA_weeks_between_dx_and_med_date")
+output = output.rename("FAKE_DATA_counts")
 
 # Small number supppression
 rounding_unit = 10
