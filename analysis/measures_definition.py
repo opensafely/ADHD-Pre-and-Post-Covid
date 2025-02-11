@@ -14,21 +14,15 @@ has_registration = practice_registrations.spanning(
     INTERVAL.start_date, INTERVAL.end_date
 ).exists_for_patient()
 
-#In terms of dates -  Latest <= RPED
-selected_events = clinical_events.where(
-    clinical_events.date.is_on_or_before(INTERVAL.end_date)
-)
-
-has_adhd_cod = (selected_events
-        .where(selected_events.snomedct_code.is_in(adhd_codelist))
-        .exists_for_patient()
+has_adhd_cod = (clinical_events
+                .where(clinical_events.date.is_on_or_before(INTERVAL.end_date))
+                .where(clinical_events.snomedct_code.is_in(adhd_codelist))
+                .exists_for_patient()
 )
 
 measures.define_measure(
     name=f"FAKE_DATA_adhd_prevalence",
-    numerator=has_adhd_cod,
-    denominator=(
-        has_registration
-    ),
+    numerator= has_adhd_cod,
+    denominator= has_registration,
     intervals=years(3).starting_on("2021-04-01"),
 )
