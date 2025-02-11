@@ -34,5 +34,3 @@ def last_matching_event(events, codelist, where=True):
         .sort_by(events.date)
         .last_for_patient()
     )
-
-#test
