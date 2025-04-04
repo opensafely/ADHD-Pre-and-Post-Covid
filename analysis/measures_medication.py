@@ -6,12 +6,21 @@ from ehrql.tables.tpp import (
     medications,
 )
 
-from codelists import adhd_codelist, adhdrem_codelist
+from codelists import (
+    adhd_codelist, 
+    adhdrem_codelist,
+    adhd_medication_codelist,
+)
 
-from variables_library import last_matching_event
+from variables_library import first_matching_event, last_matching_event
+
+'''
+The following scripts looks at the measure of selected medication used
+'''
+
 
 measures = create_measures()
-measures.configure_dummy_data(population_size=10000)
+measures.configure_dummy_data(population_size=100)
 
 # Population variables
 has_registration = practice_registrations.spanning(
@@ -38,9 +47,9 @@ selected_events = clinical_events.where(
     clinical_events.date.is_on_or_before(INTERVAL.end_date)
 )
 
-has_adhd_cod_date = last_matching_event(selected_events, adhd_codelist).date
+has_adhd_cod_date = first_matching_event(selected_events, adhd_codelist).date
 
-has_adhdrem_cod_date = last_matching_event(selected_events, adhdrem_codelist).date
+has_adhdrem_cod_date = first_matching_event(selected_events, adhdrem_codelist).date
 
 # Select patients with a diagnosis of ADHD
 has_adhd_rule_1 = has_adhd_cod_date.is_not_null()
