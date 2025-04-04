@@ -20,7 +20,7 @@ The following scripts looks at the measure of selected medication used
 
 
 measures = create_measures()
-measures.configure_dummy_data(population_size=100)
+measures.configure_dummy_data(population_size=10000)
 
 # Population variables
 has_registration = practice_registrations.spanning(
@@ -49,23 +49,36 @@ selected_events = clinical_events.where(
 
 has_adhd_cod_date = first_matching_event(selected_events, adhd_codelist).date
 
+has_med_date = first_matching_event(selected_events, adhd_medication_codelist).date
+
 has_adhdrem_cod_date = first_matching_event(selected_events, adhdrem_codelist).date
 
 # Select patients with a diagnosis of ADHD
-has_adhd_rule_1 = has_adhd_cod_date.is_not_null()
+rule_has_adhd = has_adhd_cod_date.is_not_null()
+
+# Select patients with meds
+rule_has_meds = has_med_date.is_not_null()
+
+# Need patients to take meds after the adhd conditions
+rule_meds_after_adhd_dia = has_adhd_cod_date < has_med_date
 
 # Select patients with:
 # (a) no remission code or
-# (b) a new ADHD diagnosis after the most recent remission code
-has_adhd_rule_2 = (has_adhdrem_cod_date.is_null()) | (
-    has_adhd_cod_date > has_adhdrem_cod_date
+# (b) a  ADHD med after the most recent remission code
+rule_adhd_red_after_meds = (has_adhdrem_cod_date.is_null()) | (
+    has_med_date > has_adhdrem_cod_date
 )
 
-has_adhd_rule_1_and_2 = has_adhd_rule_1 & has_adhd_rule_2
+rules_all = (
+    rule_has_adhd & 
+    rule_has_meds &
+    rule_meds_after_adhd_dia &
+    rule_adhd_red_after_meds
+)
 
 measures.define_measure(
-    name=f"adhd_prevalence",
-    numerator=has_adhd_rule_1_and_2,
+    name= f"adhd_medication_incidence",
+    numerator= rules_all,
     denominator=(
         has_registration
         & patients.sex.is_in(["male", "female"])
@@ -73,5 +86,5 @@ measures.define_measure(
         & patients.is_alive_on(INTERVAL.end_date)
     ),
     group_by={"sex": sex, "age_band": age_band},
-    intervals=years(3).starting_on("2021-04-01"),
+    intervals=years(9).starting_on("2016-04-01"),
 )
