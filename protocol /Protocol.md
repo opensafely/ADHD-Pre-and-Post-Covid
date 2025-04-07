@@ -1,42 +1,19 @@
-Examining changes in ADHD diagnosis and pathways in primary care pre and
-post Covid
+# Examining changes in ADHD diagnosis and pathways in primary care pre and post Covid
 
 Contents
 ========
 
-[Introduction 0](#introduction)
+[Introduction](#introduction)
 
-[Aims 1](#aims)
+[Aims](#aims)
 
-[Primary Aims: 1](#primary-aims)
+[Methodology](#methodology)
 
-[Secondary Aim 2](#secondary-aim)
+[Study Measures](#study-measures)
 
-[Methodology 2](#methodology)
+[Discussion](#discussion)
 
-[Data Source 2](#data-source)
-
-[Inclusion criteria 2](#inclusion-criteria)
-
-[Exclusion criteria 3](#exclusion-criteria)
-
-[Variables to capture: 3](#variables-to-capture)
-
-[Outcomes of the study 3](#outcomes-of-the-study)
-
-[Code List 4](#code-list)
-
-[Study Measures 5](#study-measures)
-
-[Primary Aim Results 5](#primary-aim-results)
-
-[Secondary Aim Results 6](#secondary-aim-results)
-
-[Discussion 7](#discussion)
-
-[Conclusion 7](#conclusion)
-
-[References 8](#references)
+[References](#references)
 
 Introduction
 ============
@@ -342,32 +319,47 @@ terms of sex, age, ethnicity, and geography. The results are displayed
 in years from pre covid to post covid, highlighted green to blue
 respectively.
 
-
+| Year | <code style="color : green">2016</code> |<code style="color : green">2017</code> |<code style="color : green">2018</code> |<code style="color : green">2019</code> |2020 |<code style="color : blue">2021</code> |<code style="color : blue">2022</code> |<code style="color : blue">2022</code> |<code style="color : blue">2023</code> |<code style="color : blue">2024</code> |
+| --- | ---   |---  |--- |---  |--- |---  | ---| --- |--- |---  | 
+| Prevalence of ADHD Diagnosis  |    |  | |  | |  | |  | |  | 
+| Prevalence of ADHD Remission  |    |  | |  | |  | |  | |  |  
 
 Table 2: Template of the proposed results on the ADHD prevalence for
 diagnosis and remission. The green and blue coloured region corresponds
 to post and pre covid region respectively.
 
-
+| Year | <code style="color : green">2016</code> |<code style="color : green">2017</code> |<code style="color : green">2018</code> |<code style="color : green">2019</code> |2020 |<code style="color : blue">2021</code> |<code style="color : blue">2022</code> |<code style="color : blue">2022</code> |<code style="color : blue">2023</code> |<code style="color : blue">2024</code> |
+| --- | ---   |---  |--- |---  |--- |---  | ---| --- |--- |---  | 
+| Prevalence receiving ADHD medication without an ADHD diagnosis |    |  | |  | |  | |  | |  | 
+| Prevalence with ADHD that are prescribed ADHD medication  |    |  | |  | |  | |  | |  |  
+| Prevalence with ADHD that do not prescribed ADHD medication  |    |  | |  | |  | |  | |  |  
 
 Table 3: Template of the proposed results on ADHD prescription with
 patients with and without an ADHD diagnosis. The green and blue coloured
 region corresponds to post and pre covid region respectively.
 
-
+| Year | <code style="color : green">2016</code> |<code style="color : green">2017</code> |<code style="color : green">2018</code> |<code style="color : green">2019</code> |2020 |<code style="color : blue">2021</code> |<code style="color : blue">2022</code> |<code style="color : blue">2022</code> |<code style="color : blue">2023</code> |<code style="color : blue">2024</code> |
+| --- | ---   |---  |--- |---  |--- |---  | ---| --- |--- |---  | 
+| Prevalence of at least one change in ADHD prescription|    |  | |  | |  | |  | |  | 
 
 Table 4: Template of the proposed results on the prevalence of at least
 one change in ADHD prescription taken. The green and blue coloured
 region corresponds to post and pre covid region respectively.
 
-
+| Year | <code style="color : green">2016</code> |<code style="color : green">2017</code> |<code style="color : green">2018</code> |<code style="color : green">2019</code> |2020 |<code style="color : blue">2021</code> |<code style="color : blue">2022</code> |<code style="color : blue">2022</code> |<code style="color : blue">2023</code> |<code style="color : blue">2024</code> |
+| --- | ---   |---  |--- |---  |--- |---  | ---| --- |--- |---  | 
+| Median time from diagnosis to treatment|    |  | |  | |  | |  | |  | 
+| Mean time from diagnosis to treatment  |    |  | |  | |  | |  | |  |  
 
 Table 5: Template of proposed results concerning the medium and mean
 time from diagnosis to treatment. The year corresponds to year of
 diagnosis. The green and blue coloured region corresponds to post and
 pre covid region respectively.
 
-
+| Year | <code style="color : green">2016</code> |<code style="color : green">2017</code> |<code style="color : green">2018</code> |<code style="color : green">2019</code> |2020 |<code style="color : blue">2021</code> |<code style="color : blue">2022</code> |<code style="color : blue">2022</code> |<code style="color : blue">2023</code> |<code style="color : blue">2024</code> |
+| --- | ---   |---  |--- |---  |--- |---  | ---| --- |--- |---  | 
+| MPrevalence of patients with ADHD non pharmacological treatments without prescription |    |  | |  | |  | |  | |  | 
+| Prevalence of patients with ADHD non pharmacological treatments with prescription   |    |  | |  | |  | |  | |  |  
 
 Table 6: The prevalence of patients with ADHD with non-pharmacological
 treatments with and without ADHD prescription. The green and blue
@@ -380,7 +372,18 @@ The secondary results will present the prevalence of ADHD patients with
 learning difficulties and compare the results with the experimental
 statistics from NHS England (NHS England, 2023).
 
-
+| Year | Cohort | Prevalence from NHS England | Prevalence from OpenSafely |
+| --- | ---   |---  |--- |
+|2022-23|Learning Disability|8.56	
+|2021-22|Learning Disability|8.04	
+|2020-21|Learning Disability|7.42	
+|2019-20|Learning Disability|6.45	
+|2018-19|Learning Disability|5.98	
+|2022-23|Without Learning Disability	0.99	
+|2021-22|Without Learning Disability	0.81	
+|2020-21|Without Learning Disability	0.69	
+|2019-20|Without Learning Disability	0.63	
+|2018-19|Without Learning Disability	0.57	
 
 Table 7: Template of the results comparing the computed prevalence from
 NHS England (NHS England, 2023) with figures computed from OpenSafely.
@@ -425,39 +428,65 @@ References
 Armitage, R. (2021). Antidepressants, primary care, and adult mental
 health services in England during COVID-19. *The Lancet
 Psychiatry*.Bennett Institute for Applied Data Science. (n.d.).
+
 *Attention Deficit Hyperactivity Disorder codes*. Retrieved from
 OpenCodelists:
-https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/adhd\_cod/20200812/Brown,
-A. (2024, 5 7). *\*MEDICATION\*: Atomoxetine*. Retrieved from Github:
-https://github.com/opensafely/codelist-development/issues/313Brown, A.
-(2024, 5 7). *\*MEDICATION\*: Dexamfetamine*. Retrieved from GitHub:
-https://github.com/opensafely/codelist-development/issues/310Brown, A.
+https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/adhd\_cod/20200812/
+
+Brown, A. (2024, 5 7). *\*MEDICATION\*: Atomoxetine*. Retrieved from Github:
+https://github.com/opensafely/codelist-development/issues/313
+
+Brown, A. (2024, 5 7). *\*MEDICATION\*: Dexamfetamine*. Retrieved from GitHub:
+https://github.com/opensafely/codelist-development/issues/310
+
+Brown, A.
 (2024, 5 7). *\*MEDICATION\*: Guanfacine*. Retrieved from Github:
-https://github.com/opensafely/codelist-development/issues/314Brown, A.
+https://github.com/opensafely/codelist-development/issues/314
+
+Brown, A.
 (2024, 5 7). *\*MEDICATION\*: Lisdexamfetamine*. Retrieved from Github:
-https://github.com/opensafely/codelist-development/issues/312Brown, A.
+https://github.com/opensafely/codelist-development/issues/312
+
+Brown, A.
 (2024, 5 7). *\*MEDICATION\*: Methylphenidate*. Retrieved from Github:
-https://github.com/opensafely/codelist-development/issues/311Gimbach, S.
+https://github.com/opensafely/codelist-development/issues/311
+
+Gimbach, S.
 (2023). The impact of the COVID-19 pandemic on ADHD medicine consumption
 in 47 countries and regions. *European Neuropsychopharmacology*,
-24-35.Gimbach, S. (2024). ADHD medicine consumption in Europe after
-COVID-19: catch-up or trend change? *BMC Psychiatry*, 112.Health and
+24-35.
+
+Gimbach, S. (2024). ADHD medicine consumption in Europe after
+COVID-19: catch-up or trend change? *BMC Psychiatry*, 112.
+
+Health and
 Social Care Information Centre. (2016, September 29). *Adult Psychiatric
 Morbidity Survey 2014.* Retrieved from NHS Digital:
-https://files.digital.nhs.uk/pdf/2/f/adult\_psychiatric\_study\_ch8\_web.pdfMcKechnie,
+https://files.digital.nhs.uk/pdf/2/f/adult\_psychiatric\_study\_ch8\_web.pdf
+
+McKechnie,
 D. G. (2023). Attention-deficit hyperactivity disorder diagnoses and
 prescriptions in UK primary care, 2000–2018: population-based cohort
-study. *BJPsych Open*, 121.NHS Confederation. (2022). *Running hot: the
-impact of the pandemic on mental health service.* NHS England. (2023,
-December 7). *Health and Care of People with Learning Disabilities,
+study. *BJPsych Open*, 121.
+
+NHS Confederation. (2022). *Running hot: the
+impact of the pandemic on mental health service.* Retrieved from NHS Confederation: https://www.nhsconfed.org/publications/running-hot
+
+
+NHS England. (2023, December 7). Health and Care of People with Learning Disabilities,
 Experimental Statistics 2022 to 2023*. Retrieved from NHS England:
-https://digital.nhs.uk/data-and-information/publications/statistical/health-and-care-of-people-with-learning-disabilities/experimental-statistics-2022-to-2023NHS
-UK. (2021, December 24). *Overview - Attention deficit hyperactivity
+https://digital.nhs.uk/data-and-information/publications/statistical/health-and-care-of-people-with-learning-disabilities/experimental-statistics-2022-to-2023
+
+NHS UK. (2021, December 24). *Overview - Attention deficit hyperactivity
 disorder (ADHD)*. Retrieved from
-https://www.nhs.uk/conditions/attention-deficit-hyperactivity-disorder-adhd/NICE.
-(2018). *Attention deficit hyperactivity disorder: diagnosis and
-management.* Ogundele, M. O. (2022). The impact of Covid-19 pandemic on
+https://www.nhs.uk/conditions/attention-deficit-hyperactivity-disorder-adhd/
+
+NICE. (2018). *Attention deficit hyperactivity disorder: diagnosis and
+management.* Retrieved from NHS Confederation: https://www.nice.org.uk/guidance/ng87 
+
+Ogundele, M. O. (2022). The impact of Covid-19 pandemic on
 services for children and adolescents with ADHD: results from a survey
-of paediatricians in the United Kingdom. *AIMS Public Health*.Polanczyk,
-G. (2007). The Worldwide Prevalence of ADHD: A Systematic Review and
+of paediatricians in the United Kingdom. *AIMS Public Health*.
+
+Polanczyk, G. (2007). The Worldwide Prevalence of ADHD: A Systematic Review and
 Metaregression Analysis. *American Journal of Psychiatry*.
