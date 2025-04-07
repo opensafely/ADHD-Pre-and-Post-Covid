@@ -319,7 +319,7 @@ terms of sex, age, ethnicity, and geography. The results are displayed
 in years from pre covid to post covid, highlighted green to blue
 respectively.
 
-| Year | <code style="color : green">2016</code> |<code style="color : green">2017</code> |<code style="color : green">2018</code> |<code style="color : green">2019</code> |2020 |<code style="color : blue">2021</code> |<code style="color : blue">2022</code> |<code style="color : blue">2022</code> |<code style="color : blue">2023</code> |<code style="color : blue">2024</code> |
+| Year |  $${\color{Green}2016}$$ | $${\color{Green}2017}$$  | $${\color{Green}2018}$$  | $${\color{Green}2019}$$   |2020 | $${\color{Blue}2017}$$  | $${\color{Blue}2021}$$ | $${\color{Blue}2022}$$ | $${\color{Blue}2023}$$  | $${\color{Blue}2024}$$ |
 | --- | ---   |---  |--- |---  |--- |---  | ---| --- |--- |---  | 
 | Prevalence of ADHD Diagnosis  |    |  | |  | |  | |  | |  | 
 | Prevalence of ADHD Remission  |    |  | |  | |  | |  | |  |  
@@ -328,7 +328,7 @@ Table 2: Template of the proposed results on the ADHD prevalence for
 diagnosis and remission. The green and blue coloured region corresponds
 to post and pre covid region respectively.
 
-| Year | <code style="color : green">2016</code> |<code style="color : green">2017</code> |<code style="color : green">2018</code> |<code style="color : green">2019</code> |2020 |<code style="color : blue">2021</code> |<code style="color : blue">2022</code> |<code style="color : blue">2022</code> |<code style="color : blue">2023</code> |<code style="color : blue">2024</code> |
+| Year |  $${\color{Green}2016}$$ | $${\color{Green}2017}$$  | $${\color{Green}2018}$$  | $${\color{Green}2019}$$   |2020 | $${\color{Blue}2017}$$  | $${\color{Blue}2021}$$ | $${\color{Blue}2022}$$ | $${\color{Blue}2023}$$  | $${\color{Blue}2024}$$ |
 | --- | ---   |---  |--- |---  |--- |---  | ---| --- |--- |---  | 
 | Prevalence receiving ADHD medication without an ADHD diagnosis |    |  | |  | |  | |  | |  | 
 | Prevalence with ADHD that are prescribed ADHD medication  |    |  | |  | |  | |  | |  |  
@@ -338,7 +338,7 @@ Table 3: Template of the proposed results on ADHD prescription with
 patients with and without an ADHD diagnosis. The green and blue coloured
 region corresponds to post and pre covid region respectively.
 
-| Year | <code style="color : green">2016</code> |<code style="color : green">2017</code> |<code style="color : green">2018</code> |<code style="color : green">2019</code> |2020 |<code style="color : blue">2021</code> |<code style="color : blue">2022</code> |<code style="color : blue">2022</code> |<code style="color : blue">2023</code> |<code style="color : blue">2024</code> |
+| Year |  $${\color{Green}2016}$$ | $${\color{Green}2017}$$  | $${\color{Green}2018}$$  | $${\color{Green}2019}$$   |2020 | $${\color{Blue}2017}$$  | $${\color{Blue}2021}$$ | $${\color{Blue}2022}$$ | $${\color{Blue}2023}$$  | $${\color{Blue}2024}$$ |
 | --- | ---   |---  |--- |---  |--- |---  | ---| --- |--- |---  | 
 | Prevalence of at least one change in ADHD prescription|    |  | |  | |  | |  | |  | 
 
@@ -346,7 +346,7 @@ Table 4: Template of the proposed results on the prevalence of at least
 one change in ADHD prescription taken. The green and blue coloured
 region corresponds to post and pre covid region respectively.
 
-| Year | <code style="color : green">2016</code> |<code style="color : green">2017</code> |<code style="color : green">2018</code> |<code style="color : green">2019</code> |2020 |<code style="color : blue">2021</code> |<code style="color : blue">2022</code> |<code style="color : blue">2022</code> |<code style="color : blue">2023</code> |<code style="color : blue">2024</code> |
+| Year |  $${\color{Green}2016}$$ | $${\color{Green}2017}$$  | $${\color{Green}2018}$$  | $${\color{Green}2019}$$   |2020 | $${\color{Blue}2017}$$  | $${\color{Blue}2021}$$ | $${\color{Blue}2022}$$ | $${\color{Blue}2023}$$  | $${\color{Blue}2024}$$ |
 | --- | ---   |---  |--- |---  |--- |---  | ---| --- |--- |---  | 
 | Median time from diagnosis to treatment|    |  | |  | |  | |  | |  | 
 | Mean time from diagnosis to treatment  |    |  | |  | |  | |  | |  |  
@@ -356,7 +356,7 @@ time from diagnosis to treatment. The year corresponds to year of
 diagnosis. The green and blue coloured region corresponds to post and
 pre covid region respectively.
 
-| Year | <code style="color : green">2016</code> |<code style="color : green">2017</code> |<code style="color : green">2018</code> |<code style="color : green">2019</code> |2020 |<code style="color : blue">2021</code> |<code style="color : blue">2022</code> |<code style="color : blue">2022</code> |<code style="color : blue">2023</code> |<code style="color : blue">2024</code> |
+| Year |  $${\color{Green}2016}$$ | $${\color{Green}2017}$$  | $${\color{Green}2018}$$  | $${\color{Green}2019}$$   |2020 | $${\color{Blue}2017}$$  | $${\color{Blue}2021}$$ | $${\color{Blue}2022}$$ | $${\color{Blue}2023}$$  | $${\color{Blue}2024}$$ |
 | --- | ---   |---  |--- |---  |--- |---  | ---| --- |--- |---  | 
 | MPrevalence of patients with ADHD non pharmacological treatments without prescription |    |  | |  | |  | |  | |  | 
 | Prevalence of patients with ADHD non pharmacological treatments with prescription   |    |  | |  | |  | |  | |  |  
@@ -374,7 +374,7 @@ statistics from NHS England (NHS England, 2023).
 
 | Year | Cohort | Prevalence from NHS England | Prevalence from OpenSafely |
 | --- | ---   |---  |--- |
-|2022-23|Learning Disability|8.56	| $${\color{red}Red}$$
+|2022-23|Learning Disability|8.56	| 
 |2021-22|Learning Disability|8.04	|
 |2020-21|Learning Disability|7.42	|
 |2019-20|Learning Disability|6.45	|
