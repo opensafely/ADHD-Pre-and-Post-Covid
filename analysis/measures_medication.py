@@ -20,7 +20,7 @@ The following scripts looks at the measure of selected medication used
 
 
 measures = create_measures()
-measures.configure_dummy_data(population_size=10000)
+measures.configure_dummy_data(population_size=10)
 
 # Population variables
 has_registration = practice_registrations.spanning(
@@ -76,8 +76,9 @@ rules_all = (
     rule_adhd_red_after_meds
 )
 
+#This looks at the 
 measures.define_measure(
-    name= f"adhd_medication_incidence",
+    name= f"adhd_medication_incidence_general_pop",
     numerator= rules_all,
     denominator=(
         has_registration
@@ -85,6 +86,14 @@ measures.define_measure(
         & (age <= 120)
         & patients.is_alive_on(INTERVAL.end_date)
     ),
+    group_by={"sex": sex, "age_band": age_band},
+    intervals=years(9).starting_on("2016-04-01"),
+)
+
+measures.define_measure(
+    name= f"adhd_test_dummy",
+    numerator= rules_all,
+    denominator=rule_has_adhd,
     group_by={"sex": sex, "age_band": age_band},
     intervals=years(9).starting_on("2016-04-01"),
 )
