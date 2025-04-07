@@ -374,16 +374,16 @@ statistics from NHS England (NHS England, 2023).
 
 | Year | Cohort | Prevalence from NHS England | Prevalence from OpenSafely |
 | --- | ---   |---  |--- |
-|2022-23|Learning Disability|8.56	
-|2021-22|Learning Disability|8.04	
-|2020-21|Learning Disability|7.42	
-|2019-20|Learning Disability|6.45	
-|2018-19|Learning Disability|5.98	
-|2022-23|Without Learning Disability	0.99	
-|2021-22|Without Learning Disability	0.81	
-|2020-21|Without Learning Disability	0.69	
-|2019-20|Without Learning Disability	0.63	
-|2018-19|Without Learning Disability	0.57	
+|2022-23|Learning Disability|8.56	|
+|2021-22|Learning Disability|8.04	|
+|2020-21|Learning Disability|7.42	|
+|2019-20|Learning Disability|6.45	|
+|2018-19|Learning Disability|5.98	|
+|2022-23|Without Learning Disability|0.99	|
+|2021-22|Without Learning Disability|0.81	|
+|2020-21|Without Learning Disability|0.69	|
+|2019-20|Without Learning Disability|0.63	|
+|2018-19|Without Learning Disability|0.57	|
 
 Table 7: Template of the results comparing the computed prevalence from
 NHS England (NHS England, 2023) with figures computed from OpenSafely.
