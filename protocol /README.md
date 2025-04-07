@@ -1,3 +1,6 @@
+> [!NOTE]  
+> The following is the published protocol has describe by [OpenSAFELY](https://docs.opensafely.org/protocol/). The produced outputs may not be reflected exactly from the described output given in the protocol.
+
 # Examining changes in ADHD diagnosis and pathways in primary care pre and post Covid
 
 Contents
