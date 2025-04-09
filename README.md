@@ -30,7 +30,7 @@ Any HTML or Markdown documentation is [© Crown copyright](https://www.nationala
 
 
 ## Contact
-This repository is maintained by the [NHS England Data Science Team][ds-email]. To contact us - [email][ds-email]. 
+This repository is partly maintained by the [NHS England Data Science Team][ds-email]. To contact us - [email][ds-email]. 
 
 See our other work on the [NHS England Data Science website][ds-site], including [more information about this project][ds-site-dl].
 
