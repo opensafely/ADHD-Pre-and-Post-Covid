@@ -48,6 +48,5 @@ real data *within the same infrastructure that the data is stored*.
 Read more at [OpenSAFELY.org](https://opensafely.org).
 
 ---
-[ds-site]: https://github.com/nhsengland/datascience
-[ds-site-dl]: https://nhsengland.github.io/datascience/our_work/data-linkage-hub/linkage-projects/better-matching/
+[ds-site]: https://nhsengland.github.io/datascience/
 [ds-email]: mailto:datascience@nhs.net
