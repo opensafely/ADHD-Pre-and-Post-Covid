@@ -1,6 +1,9 @@
 # NHS England ADHD OpenSAFELY Analysis Project 
 
-This repo is codebase for the approve OpenSAFELY – [Project #181: Examining changes in ADHD diagnosis and pathways in primary care pre and post COVID pandemic](https://www.opensafely.org/approved-projects/#project-181)
+> [!IMPORTANT]  
+> This repo is in active development and contents can be subject to change
+
+This repo is codebase for the approved [OpenSAFELY project #181: Examining changes in ADHD diagnosis and pathways in primary care pre and post COVID pandemic](https://www.opensafely.org/approved-projects/#project-181)
 
 Detail description of the project can be found on our [protocol]( https://github.com/opensafely/ADHD-Pre-and-Post-Covid/tree/main/protocol%20)
 
@@ -10,7 +13,7 @@ Each query is logged in [OpenSAFELY Jobs](https://jobs.opensafely.org/examining-
 
 The repo can be run on [dummy data](https://docs.opensafely.org/ehrql/how-to/dummy-data/) using [GitHub Codespaces]( https://docs.opensafely.org/getting-started/how-to/use-github-codespaces-in-your-project/)
 
-The [metadata of clinical code]( https://www.opencodelists.org/) used in this study can be found in the [Codelist file]( https://github.com/opensafely/ADHD-Pre-and-Post-Covid/blob/main/analysis/codelists.py).
+The [metadata of clinical code]( https://www.opencodelists.org/) used in this study can be found in our [Codelist file]( https://github.com/opensafely/ADHD-Pre-and-Post-Covid/blob/main/analysis/codelists.py).
 
 ## Compliance
 
