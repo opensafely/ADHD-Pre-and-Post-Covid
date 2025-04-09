@@ -19,7 +19,7 @@ The [metadata of clinical code]( https://www.opencodelists.org/) used in this st
 
 ## Compliance
 
-The project is performed under the [OpenSAFELY COVID-19 Service]( https://digital.nhs.uk/about-nhs-digital/corporate-information-and-documents/directions-and-data-provision-notices/data-provision-notices-dpns/opensafely-covid-19-service-data-provision-notice) thus may be subject to a [legal hold]( https://digital.nhs.uk/about-nhs-digital/corporate-information-and-documents/directions-and-data-provision-notices/data-provision-notices-dpns/opensafely-covid-19-service-data-provision-notice) from the [Transformation Directorate]( https://transform.england.nhs.uk/information-governance/guidance/preparing-for-the-uk-covid-19-inquiry/)
+The project is performed under the [OpenSAFELY COVID-19 Service]( https://digital.nhs.uk/about-nhs-digital/corporate-information-and-documents/directions-and-data-provision-notices/data-provision-notices-dpns/opensafely-covid-19-service-data-provision-notice) thus may be subject to a [legal hold](https://transform.england.nhs.uk/documents/147/PRN00309_ii_Example_document_preservation_notice_210323_Open_access_Word_file_MASTER.odt) from the [Transformation Directorate]( https://transform.england.nhs.uk/information-governance/guidance/preparing-for-the-uk-covid-19-inquiry/)
 
 The work is [backup]( https://github.com/NHSDigital/ADHD-Pre-and-Post-Covid) automatically [every 24 hours]( https://github.com/NHSDigital/ADHD-Pre-and-Post-Covid/blob/main/.github/workflows/folk_syn.yml) to [NHS England previously NHS Digital’s GitHub organization]( https://github.com/NHSDigital) 
 
