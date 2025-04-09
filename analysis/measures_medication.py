@@ -70,7 +70,7 @@ rule_adhd_med_after_red = (has_adhdrem_cod_date.is_null()) | (
 )
 
 rule_adhd_before_red = (has_adhdrem_cod_date.is_null()) | (
-    rule_has_adhd > has_adhdrem_cod_date
+    has_adhdrem_cod_date > has_adhdrem_cod_date
 )
 
 rules_medication_with_ADHD = (
