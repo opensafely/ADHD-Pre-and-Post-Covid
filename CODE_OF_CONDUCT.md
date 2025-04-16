@@ -46,6 +46,9 @@ Instances of abusive, harassing, or otherwise unacceptable behaviour may be repo
 
 All community leaders are obligated to respect the privacy and security of the reporter of any incident.
 
+### Freedom to Speak Up
+NHS England aims to ensure everyone working within the NHS feels safe and confident to speak up. Information on speaking up to [NHS England](https://www.england.nhs.uk/ourwork/freedom-to-speak-up/) can found on website and [National Guardian’s Office](https://www.england.nhs.uk/ourwork/freedom-to-speak-up/)
+
 ## Attribution
 
 This Code of Conduct is adapted from the [Contributor Covenant][homepage],[version 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html) and the `govcookiecutter` [Code of Conduct](https://github.com/best-practice-and-impact/govcookiecutter/blob/main/CODE_OF_CONDUCT.md).
