@@ -47,7 +47,10 @@ Instances of abusive, harassing, or otherwise unacceptable behaviour may be repo
 All community leaders are obligated to respect the privacy and security of the reporter of any incident.
 
 ### Freedom to Speak Up
-NHS England aims to ensure everyone working within the NHS feels safe and confident to speak up. Information on speaking up to [NHS England](https://www.england.nhs.uk/ourwork/freedom-to-speak-up/) can found on website and [National Guardian’s Office](https://www.england.nhs.uk/ourwork/freedom-to-speak-up/)
+NHS England aims to ensure everyone working within the NHS feels safe and confident to speak up. Information on speaking up to NHS England can found on the [website](https://www.england.nhs.uk/ourwork/freedom-to-speak-up/) and [National Guardian’s Office](https://nationalguardian.org.uk/)
+
+### Whistleblowing
+For confidential advice on whistleblowing contact the independent charity [Protect](https://protect-advice.org.uk/)
 
 ## Attribution
 
