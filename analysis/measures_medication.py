@@ -57,13 +57,20 @@ rule_has_adhd = has_adhd_cod_date.is_not_null()
 # Select patients with meds
 rule_has_meds = has_med_date.is_not_null()
 
-# Need patients to take meds after the adhd conditions
-rule_meds_after_adhd_dia = has_adhd_cod_date < has_med_date
-
 rule_has_med_but_no_adhd =(
     rule_has_meds &
     has_adhd_cod_date.is_null()
     )
+
+rule_has_med_with_adhd = (
+    rule_has_meds &
+    has_adhd_cod_date.is_not_null()
+)
+
+rule_no_med_with_adhd = (
+    has_med_date.is_null() &
+    has_adhd_cod_date.is_not_null()
+)
 
 #This looks at the incidence of ADHD medication in the entire population
 measures.define_measure(
@@ -95,15 +102,15 @@ measures.define_measure(
 
 #This looks at the incidence of medication in the population for ADHD diagonsis
 measures.define_measure(
-    name= f"adhd_medication_incidence_adhd_pop_only",
-    numerator= rules_medication_with_ADHD,
+    name= f"adhd_medication_diagonsis",
+    numerator= rule_has_med_with_adhd,
     denominator=(
         has_registration
         & rule_has_adhd
         & patients.sex.is_in(["male", "female"])
         & (age <= 120)
         & patients.is_alive_on(INTERVAL.end_date)
-        & rules_has_adhd_without_meds
+        & has_adhd_cod_date.is_not_null()
     ),
     group_by={"sex": sex, "age_band": age_band},
     intervals=years(9).starting_on("2016-04-01"),
@@ -111,15 +118,15 @@ measures.define_measure(
 
 #This looks at the incidence of population of ADHD diagonsis
 measures.define_measure(
-    name= f"adhd_NO_medication_incidence_adhd_pop_only",
-    numerator= ~rules_medication_with_ADHD,
+    name= f"adhd_no_medication_diagonsis",
+    numerator= rule_no_med_with_adhd,
     denominator=(
         has_registration
         & rule_has_adhd
         & patients.sex.is_in(["male", "female"])
         & (age <= 120)
         & patients.is_alive_on(INTERVAL.end_date)
-        & rules_has_adhd_without_meds
+        & has_adhd_cod_date.is_not_null()
     ),
     group_by={"sex": sex, "age_band": age_band},
     intervals=years(9).starting_on("2016-04-01"),
