@@ -28,15 +28,13 @@ actions:
       moderately_sensitive:
         measure: output/adhd_prevalence.csv
 
-
-  generate_adhd_medication_prevalence:
+  generate_adhd_medication_prevalence_general_population:
     run: > 
-      python:v2 analysis/measures_medication.py
-      --output output/adhd_medication_incidence_general_pop.csv 
+      ehrql:v1 generate-measures analysis/measures_medication.py 
+      --output output/adhd_medication_measures.csv 
     outputs:
       moderately_sensitive:
-        measure1: output/adhd_medication_incidence_general_pop.csv
-
+        measure: output/adhd_medication_measures.csv
 
 
 

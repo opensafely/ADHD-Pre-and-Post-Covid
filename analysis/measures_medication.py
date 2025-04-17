@@ -65,9 +65,15 @@ rule_meds_after_adhd_dia = has_adhd_cod_date < has_med_date
 # Select patients with:
 # (a) no remission code or
 # (b) a  ADHD med after the most recent remission code
-rule_adhd_med_after_red = (has_adhdrem_cod_date.is_null()) | (
+rule_adhd_med_before_red = (has_adhdrem_cod_date.is_null()) | (
     has_med_date > has_adhdrem_cod_date
 )
+
+rule_has_med_but_no_adhd =(
+    rule_has_meds &
+    has_adhdrem_cod_date.is_not_null()
+    )
+
 
 rule_adhd_before_red = (has_adhdrem_cod_date.is_null()) | (
     has_adhdrem_cod_date > has_adhdrem_cod_date
@@ -77,7 +83,7 @@ rules_medication_with_ADHD = (
     rule_has_adhd & 
     rule_has_meds &
     rule_meds_after_adhd_dia &
-    rule_adhd_med_after_red
+    rule_adhd_med_before_red
 )
 
 rules_has_adhd_without_meds = (
@@ -85,10 +91,10 @@ rules_has_adhd_without_meds = (
     rule_adhd_before_red
 )
 
-#This looks at the incidence of medication in the entire population
+#This looks at the incidence of ADHD medication in the entire population
 measures.define_measure(
-    name= f"adhd_medication_incidence_general_pop",
-    numerator= rules_medication_with_ADHD,
+    name= f"adhd_medication_general",
+    numerator= rule_has_meds,
     denominator=(
         has_registration
         & patients.sex.is_in(["male", "female"])
@@ -101,14 +107,13 @@ measures.define_measure(
 
 #This looks at the incidence of medication in the entire population that do not have a ADHD diagonsis
 measures.define_measure(
-    name= f"adhd_medication_incidence_general_pop_no_adhd_dia",
-    numerator= rules_medication_with_ADHD,
+    name= f"no_adhd_medication_general",
+    numerator= rule_has_med_but_no_adhd,
     denominator=(
         has_registration
         & patients.sex.is_in(["male", "female"])
         & (age <= 120)
         & patients.is_alive_on(INTERVAL.end_date)
-        & ~rule_has_adhd
     ),
     group_by={"sex": sex, "age_band": age_band},
     intervals=years(9).starting_on("2016-04-01"),
