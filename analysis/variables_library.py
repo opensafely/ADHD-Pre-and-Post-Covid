@@ -1,3 +1,11 @@
+from ehrql import (
+    INTERVAL, 
+    case, 
+    create_measures, 
+    when, 
+    years
+)
+
 from ehrql.tables.tpp import (
     patients,
     practice_registrations,

@@ -18,7 +18,6 @@ from variables_library import first_matching_event, last_matching_event, event_A
 The following scripts looks at the measure of selected medication used
 '''
 
-
 measures = create_measures()
 measures.configure_dummy_data(population_size=10)
 
