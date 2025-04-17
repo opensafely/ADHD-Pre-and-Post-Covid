@@ -12,7 +12,7 @@ from codelists import (
     adhd_medication_codelist,
 )
 
-from variables_library import first_matching_event, last_matching_event
+from variables_library import first_matching_event, last_matching_event, event_ADHD
 
 '''
 The following scripts looks at the measure of selected medication used
@@ -47,11 +47,9 @@ selected_events = clinical_events.where(
     clinical_events.date.is_on_or_before(INTERVAL.end_date)
 )
 
-has_adhd_cod_date = first_matching_event(selected_events, adhd_codelist).date
-
 has_med_date = first_matching_event(selected_events, adhd_medication_codelist).date
 
-has_adhdrem_cod_date = first_matching_event(selected_events, adhdrem_codelist).date
+has_adhd_cod_date = event_ADHD()
 
 # Select patients with a diagnosis of ADHD
 rule_has_adhd = has_adhd_cod_date.is_not_null()
@@ -62,34 +60,10 @@ rule_has_meds = has_med_date.is_not_null()
 # Need patients to take meds after the adhd conditions
 rule_meds_after_adhd_dia = has_adhd_cod_date < has_med_date
 
-# Select patients with:
-# (a) no remission code or
-# (b) a  ADHD med after the most recent remission code
-rule_adhd_med_before_red = (has_adhdrem_cod_date.is_null()) | (
-    has_med_date > has_adhdrem_cod_date
-)
-
 rule_has_med_but_no_adhd =(
     rule_has_meds &
-    has_adhdrem_cod_date.is_not_null()
+    has_adhd_cod_date.is_null()
     )
-
-
-rule_adhd_before_red = (has_adhdrem_cod_date.is_null()) | (
-    has_adhdrem_cod_date > has_adhdrem_cod_date
-)
-
-rules_medication_with_ADHD = (
-    rule_has_adhd & 
-    rule_has_meds &
-    rule_meds_after_adhd_dia &
-    rule_adhd_med_before_red
-)
-
-rules_has_adhd_without_meds = (
-    rule_has_adhd &
-    rule_adhd_before_red
-)
 
 #This looks at the incidence of ADHD medication in the entire population
 measures.define_measure(
