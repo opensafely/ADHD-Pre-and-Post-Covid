@@ -19,7 +19,7 @@ The following scripts looks at the measure of selected medication used
 '''
 
 measures = create_measures()
-measures.configure_dummy_data(population_size=10)
+measures.configure_dummy_data(population_size=1000)
 
 # Population variables
 has_registration = practice_registrations.spanning(
