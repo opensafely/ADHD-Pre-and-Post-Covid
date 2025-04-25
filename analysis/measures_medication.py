@@ -12,7 +12,12 @@ from codelists import (
     adhd_medication_codelist,
 )
 
-from variables_library import first_matching_event, last_matching_event, event_ADHD
+from variables_library import (
+    first_matching_event, 
+    last_matching_event, 
+    event_ADHD,
+    first_medication_event
+)
 
 '''
 The following scripts looks at the measure of selected medication used
@@ -42,11 +47,11 @@ age_band = case(
 )
 
 # In terms of dates -  Latest <= RPED
-selected_events = clinical_events.where(
-    clinical_events.date.is_on_or_before(INTERVAL.end_date)
+selected_events = medications.where(
+    medications.date.is_on_or_before(INTERVAL.end_date)
 )
 
-has_med_date = first_matching_event(selected_events, adhd_medication_codelist).date
+has_med_date = first_medication_event(selected_events, adhd_medication_codelist).date
 
 has_adhd_cod_date = event_ADHD()
 
