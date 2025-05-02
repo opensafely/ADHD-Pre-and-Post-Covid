@@ -46,7 +46,7 @@ actions:
 
   Table_3_with_ADHD_that_are_prescribed_ADHD_medication:
     run: > 
-      ehrql:v1 analysis/Table_3_with_ADHD_that_are_prescribed_ADHD_medication.py
+      ehrql:v1 generate-measures analysis/Table_3_with_ADHD_that_are_prescribed_ADHD_medication.py
       --output output/Table_3_with_ADHD_that_are_prescribed_ADHD_medication.csv 
     outputs:
       moderately_sensitive:
