@@ -49,7 +49,7 @@ age_band = case(
     when(age.is_null()).then("Missing"),
 )
 
-# In terms of dates -  Latest <= RPED
+
 selected_events = medications.where(
     medications.date.is_on_or_before(INTERVAL.end_date)
 )
