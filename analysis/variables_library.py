@@ -19,6 +19,10 @@ from codelists import (
     adhd_medication_codelist,
 )
 
+from datetime import (
+    datetime
+)
+
 def first_medication_event(medications, medication_codelist, where=True):
     """Select the first matching dmd_code from specified codelist
 
@@ -75,7 +79,7 @@ def last_matching_event(events, codelist, where=True):
     )
 
 def event_ADHD():
-    """Creates a ADHD diagonsis under the business rules
+    """Creates a ADHD diagonsis under the business rules for digonsis
 
     Returns:
         patient frame: One row per patient frame, with the first matching event from codelist
@@ -103,3 +107,42 @@ def event_ADHD():
     has_adhd_rule_1_and_2 = has_adhd_rule_1 & has_adhd_rule_2
 
     return has_adhd_rule_1_and_2
+
+
+def first_event_ADHD(remove_readmission = False):
+    """Creates a ADHD diagonsis for the first point of diagonsis
+
+    Args:
+        remove_readmission (bool, optional): Considers readmissions  Defaults to False.
+
+    Returns:
+        _type_: One row per patient frame, with the first matching event from codelist
+    """
+
+    selected_events = clinical_events.where(
+    clinical_events.date.is_on_or_before(INTERVAL.end_date)
+    )
+
+    has_adhdrem_cod_date = first_matching_event(selected_events, adhdrem_codelist).date
+
+    # Select patients with a diagnosis of ADHD
+    has_adhd_rule_1 = has_adhd_cod_date.is_not_null()
+
+    if remove_readmission:
+        # Consider readmission
+        has_adhd_cod_date = first_matching_event(selected_events, adhd_codelist).date
+
+        # Select patients with:
+        # (a) no remission code or
+        # (b) a new ADHD diagnosis after the most recent remission code
+        has_adhd_rule_2 = (has_adhdrem_cod_date.is_null()) | (
+            has_adhd_cod_date > has_adhdrem_cod_date
+        )
+
+        has_adhd_total_rules = has_adhd_rule_1 & has_adhd_rule_2
+
+    else:
+
+        has_adhd_total_rules = has_adhd_rule_1
+
+    return has_adhd_total_rules
