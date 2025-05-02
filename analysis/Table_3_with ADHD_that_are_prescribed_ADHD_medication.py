@@ -18,7 +18,8 @@ from variables_library import (
     last_matching_event, 
     event_ADHD,
     first_medication_event,
-    first_event_ADHD
+    first_event_ADHD,
+    add_datestamp
 )
 
 '''
@@ -62,7 +63,7 @@ has_adhd_and_meds = has_adhd_cod_date.is_not_null() < has_med_date
 
 #This looks at the incidence of ADHD medication in the entire population
 measures.define_measure(
-    name= f"adhd_medication_general",
+    name= f"ADHD_med_and_dia_" + add_datestamp(),
     numerator= has_adhd_and_meds,
     denominator=(
         has_registration

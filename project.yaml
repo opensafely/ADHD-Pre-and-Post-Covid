@@ -44,6 +44,14 @@ actions:
       moderately_sensitive:
         measure: output/thin_slice_medication_measures.csv
 
+  Table_3_with_ADHD_that_are_prescribed_ADHD_medication:
+    run: > 
+      ehrql:v1 generate-measures analysis/medication_thin_slice_measures.py
+      --output output/thin_slice_medication_measures.csv 
+    outputs:
+      moderately_sensitive:
+        measure: output/thin_slice_medication_measures.csv
+
 
 
 
