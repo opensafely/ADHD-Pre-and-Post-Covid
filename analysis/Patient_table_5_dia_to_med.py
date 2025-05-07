@@ -15,7 +15,7 @@ from codelists import (
 )
 
 dataset = create_dataset()
-dataset.configure_dummy_data(population_size=100000)
+dataset.configure_dummy_data(population_size=1000)
 
 # Date range
 start_date = "2016-04-01"
@@ -61,6 +61,8 @@ dataset.first_mph_med_date = (
 dataset.times_between_dia_med_weeks = (
     dataset.first_mph_med_date - dataset.first_adhd_diagnosis_date
 ).weeks
+
+dataset.year_of_medication = (dataset.first_mph_med_date).year
 
 # Computing the population records
 dataset.define_population(
