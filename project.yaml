@@ -28,14 +28,6 @@ actions:
       moderately_sensitive:
         measure: output/adhd_prevalence.csv
 
-  generate_adhd_medication_prevalence:
-    run: > 
-      ehrql:v1 generate-measures analysis/measures_medication.py 
-      --output output/adhd_medication_measures.csv 
-    outputs:
-      moderately_sensitive:
-        measure: output/adhd_medication_measures.csv
-
   thin_slice_medication: 
     run: > 
       ehrql:v1 generate-measures analysis/medication_thin_slice_measures.py
