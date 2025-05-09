@@ -26,6 +26,8 @@ from variables_library import (
 The following scripts looks at the measure of selected medication used
 
 This is a combination of two groups
+1) Patients with medication AND no diagonsis
+2) Paitnets with medication BEFORE diagonsis
 '''
 
 measures = create_measures()
@@ -51,7 +53,6 @@ age_band = case(
     when(age.is_null()).then("Missing"),
 )
 
-
 selected_events = medications.where(
     medications.date.is_on_or_before(INTERVAL.end_date)
 )
@@ -59,13 +60,19 @@ selected_events = medications.where(
 has_med_date = first_medication_event(selected_events, adhd_medication_codelist).date
 has_adhd_cod_date = first_event_ADHD()
 
-has_adhd_and_meds = has_adhd_cod_date < has_med_date
-has_adhd_and_meds = has_adhd_and_meds.is_not_null()
+#Computing group 1 - medication and NO diagnosis
+has_med_and_no_dia = has_med_date.is_not_null() & ~(has_adhd_cod_date.is_not_null())
+
+#Computing group 2 - medication before diagnosis
+has_meds_before_dia = has_adhd_cod_date > has_med_date
+has_meds_before_dia = has_meds_before_dia.is_not_null()
+
+has_med_only = has_med_and_no_dia | has_meds_before_dia
 
 #This looks at the incidence of ADHD medication in the entire population
 measures.define_measure(
     name= f"ADHD_med_and_dia_" + add_datestamp(),
-    numerator= has_adhd_and_meds,
+    numerator= has_med_only,
     denominator=(
         has_registration
         & patients.sex.is_in(["male", "female"])
