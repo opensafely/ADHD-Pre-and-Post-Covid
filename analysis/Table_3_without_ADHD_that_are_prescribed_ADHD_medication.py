@@ -71,7 +71,7 @@ has_med_only = has_med_and_no_dia | has_meds_before_dia
 
 #This looks at the incidence of ADHD medication in the entire population
 measures.define_measure(
-    name= f"ADHD_med_and_dia_" + add_datestamp(),
+    name= f"ADHD_med_only_" + add_datestamp(),
     numerator= has_med_only,
     denominator=(
         has_registration
