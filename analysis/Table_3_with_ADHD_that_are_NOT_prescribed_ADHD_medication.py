@@ -67,7 +67,7 @@ has_med_and_no_dia = has_med_date.is_not_null() & ~(has_adhd_cod_date.is_not_nul
 #This looks at the incidence of ADHD medication in the entire population
 measures.define_measure(
     name= f"ADHD_med_only_" + add_datestamp(),
-    numerator= has_med_only,
+    numerator= has_med_and_no_dia,
     denominator=(
         has_registration
         & patients.sex.is_in(["male", "female"])
