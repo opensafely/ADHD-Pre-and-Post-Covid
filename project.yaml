@@ -23,10 +23,10 @@ actions:
   generate_adhd_prevalence:
     run: > 
       ehrql:v1 generate-measures analysis/measures_definition.py 
-      --output output/adhd_prevalence.csv
+      --output output/adhd_prevalence_120525.csv
     outputs:
       moderately_sensitive:
-        measure: output/adhd_prevalence.csv
+        measure: output/adhd_prevalence_test_120525.csv
 
   thin_slice_medication: 
     run: > 
@@ -39,10 +39,10 @@ actions:
   Table_2_Prevalence_of_ADHD_Diagnosis:
     run: > 
       ehrql:v1 generate-measures analysis/Table_2_Prevalence_of_ADHD_Diagnosis.py
-      --output output/Table_2_Prevalence_of_ADHD_Diagnosis.csv
+      --output output/Table_2_Prevalence_of_ADHD_Diagnosis_120525.csv
     outputs:
       moderately_sensitive:
-        measure: output/Table_2_Prevalence_of_ADHD_Diagnosis.csv
+        measure: output/Table_2_Prevalence_of_ADHD_Diagnosis_120525.csv
 
   Table_3_with_ADHD_that_are_prescribed_ADHD_medication:
     run: > 
