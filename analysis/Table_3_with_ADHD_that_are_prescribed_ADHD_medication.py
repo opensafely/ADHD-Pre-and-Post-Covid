@@ -55,6 +55,7 @@ selected_events = medications.where(
 )
 
 has_med_date = first_medication_event(selected_events, adhd_medication_codelist).date
+
 selected_conditions = clinical_events.where(
     clinical_events.date.is_on_or_before(INTERVAL.end_date)
 )
