@@ -27,3 +27,11 @@ actions:
     outputs:
       moderately_sensitive:
         measure: output/adhd_prevalence.csv
+
+  ill_posed:
+    run: > 
+      ehrql:v1 generate-dataset analysis/ill_posed_script.py
+      --output output/ill_posed_output.csv
+    outputs:
+      highly_sensitive:
+        measure: output/ill_posed_output.csv
