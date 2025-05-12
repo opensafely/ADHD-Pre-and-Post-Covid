@@ -8,7 +8,7 @@ from ehrql.tables.tpp import (
 
 from codelists import adhd_codelist, adhdrem_codelist
 
-from variables_library import last_matching_event
+from variables_library import last_matching_event, add_datestamp
 
 measures = create_measures()
 measures.configure_dummy_data(population_size=10)
@@ -55,7 +55,7 @@ has_adhd_rule_2 = (has_adhdrem_cod_date.is_null()) | (
 has_adhd_rule_1_and_2 = has_adhd_rule_1 & has_adhd_rule_2
 
 measures.define_measure(
-    name=f"adhd_prevalence",
+    name=f"Table_2_Prevalence_of_ADHD_Diagnosis" + add_datestamp(),
     numerator=has_adhd_rule_1_and_2,
     denominator=(
         has_registration
