@@ -59,7 +59,7 @@ has_adhd_rule_2 = (has_adhdrem_cod_date.is_null()) | (
 has_adhd_rule_1_and_2 = has_adhd_rule_1 & has_adhd_rule_2
 
 measures.define_measure(
-    name=f"Table_2_Prevalence_of_ADHD_Diagnosis1",
+    name=f"Table_2_Prevalence_of_ADHD_Diagnosis_extactly_same",
     numerator=has_adhd_rule_1_and_2,
     denominator=(
         has_registration
