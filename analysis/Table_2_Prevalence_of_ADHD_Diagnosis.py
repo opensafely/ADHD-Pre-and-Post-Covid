@@ -8,11 +8,7 @@ from ehrql.tables.tpp import (
 
 from codelists import adhd_codelist, adhdrem_codelist
 
-from variables_library import (
-    last_matching_event,
-    first_event_ADHD,
-    add_datestamp
-)
+from variables_library import last_matching_event
 
 measures = create_measures()
 measures.configure_dummy_data(population_size=10)
@@ -38,11 +34,11 @@ age_band = case(
 )
 
 # In terms of dates -  Latest <= RPED
-has_adhd_cod_date = first_event_ADHD(INTERVAL.end_date)
-
 selected_events = clinical_events.where(
     clinical_events.date.is_on_or_before(INTERVAL.end_date)
 )
+
+has_adhd_cod_date = last_matching_event(selected_events, adhd_codelist).date
 
 has_adhdrem_cod_date = last_matching_event(selected_events, adhdrem_codelist).date
 
@@ -59,7 +55,7 @@ has_adhd_rule_2 = (has_adhdrem_cod_date.is_null()) | (
 has_adhd_rule_1_and_2 = has_adhd_rule_1 & has_adhd_rule_2
 
 measures.define_measure(
-    name=f"Table_2_Prevalence_of_ADHD_Diagnosis_extactly_same",
+    name=f"adhd_prevalence",
     numerator=has_adhd_rule_1_and_2,
     denominator=(
         has_registration
