@@ -65,7 +65,7 @@ has_adhd_cod_date = first_matching_event(selected_conditions, adhd_codelist).dat
 has_adhd_and_meds = has_adhd_cod_date < has_med_date
 has_adhd_and_meds = has_adhd_and_meds.is_not_null()
 
-#This looks at the incidence of ADHD medication in the entire population
+#This looks at the incidence of ADHD medication in the population of ADHD
 measures.define_measure(
     name= f"Table_3_with_ADHD_that_are_prescribed_ADHD_medication" + add_datestamp(),
     numerator= has_adhd_and_meds,
