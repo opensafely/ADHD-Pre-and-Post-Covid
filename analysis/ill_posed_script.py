@@ -24,8 +24,6 @@ end_date = "2017-03-31"
 has_registration = practice_registrations.spanning(
     start_date, end_date #WRONG start date after the end date
 ).exists_for_patient()
-dataset.sex = patients.sex
-dataset.age = patients.age_on(end_date)
 
 # Filtering with the codelists
 has_adhd_event = clinical_events.where(
@@ -59,6 +57,10 @@ dataset.first_mph_med_date = (
 dataset.times_between_dia_med_weeks = (
     dataset.first_mph_med_date - dataset.first_adhd_diagnosis_date
 ).weeks
+
+dataset.sex = patients.sex
+dataset.age = patients.age_on(end_date)
+
 
 # Computing the population records
 dataset.define_population(
