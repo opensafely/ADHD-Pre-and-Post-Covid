@@ -25,7 +25,7 @@ output['size'] = np.ceil(output['size'] / rounding_unit)
 output['size'] = output['size'] * rounding_unit
 
 # #Adding a set time stamp
- output['timestamp'] = add_datestamp()
+output['timestamp'] = add_datestamp()
 
 # Saving the table
 output.to_csv("output/Table_5_time_from_diagnosis_to_treatment.csv")
