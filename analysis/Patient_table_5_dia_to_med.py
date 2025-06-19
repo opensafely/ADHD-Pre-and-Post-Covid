@@ -18,13 +18,14 @@ dataset = create_dataset()
 dataset.configure_dummy_data(population_size=1000)
 
 # Date range
-start_date = "2016-04-01"
-end_date = "2025-03-31"
+start_date_point = "2016-04-01"
+end_date_point = "2025-03-31"
 
 # Population variables
-has_registration = practice_registrations.spanning(
-    start_date, end_date
-).exists_for_patient()
+has_registration = practice_registrations.where(
+        practice_registrations.start_date.is_on_or_after(start_date_point)
+    ).exists_for_patient()
+
 dataset.sex = patients.sex
 dataset.date_of_birth = patients.date_of_birth
 

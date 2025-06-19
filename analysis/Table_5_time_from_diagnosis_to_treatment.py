@@ -14,7 +14,7 @@ os.makedirs(output_dir, exist_ok=True)
 adhd_medication_date_data = pd.read_csv("output/Patient_table_5_dia_to_med.csv.gz")
 
 #Genrating the final table
-output = adhd_medication_date_data.groupby(['year_of_medication','sex','age_band']).times_between_dia_med_weeks.agg(['mean', 'median','size'])
+output = adhd_medication_date_data.groupby(['year_of_medication','sex']).times_between_dia_med_weeks.agg(['mean', 'median','size'])
 
 # #Filter the muilple index
 output = output[output.index.isin(list(range(2016,2025)), level=0)]
