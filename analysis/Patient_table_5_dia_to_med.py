@@ -1,4 +1,4 @@
-from ehrql import create_dataset
+from ehrql import create_dataset, case, create_measures, when, years
 from ehrql.tables.tpp import (
     patients,
     practice_registrations,
@@ -27,7 +27,7 @@ has_registration = practice_registrations.spanning(
 ).exists_for_patient()
 dataset.sex = patients.sex
 dataset.date_of_birth = patients.date_of_birth
-dataset.age = patients.age_on(end_date)
+
 
 # Filtering with the codelists
 has_adhd_event = clinical_events.where(
@@ -64,12 +64,27 @@ dataset.times_between_dia_med_weeks = (
 
 dataset.year_of_medication = (dataset.first_mph_med_date).year
 
+#Computing the age at the point of medication
+dataset.age = patients.age_on(dataset.first_mph_med_date)
+
+dataset.age_band = case(
+    when((dataset.age >= 0) & (dataset.age <= 9)).then("0 to 9"),
+    when((dataset.age >= 10) & (dataset.age <= 17)).then("10 to 17"),
+    when((dataset.age >= 18) & (dataset.age <= 24)).then("18 to 24"),
+    when((dataset.age >= 25) & (dataset.age <= 34)).then("25 to 34"),
+    when((dataset.age >= 35) & (dataset.age <= 44)).then("35 to 44"),
+    when((dataset.age >= 45) & (dataset.age <= 54)).then("45 to 54"),
+    when((dataset.age >= 55) & (dataset.age <= 64)).then("55 to 64"),
+    when((dataset.age >= 65) & (dataset.age <= 74)).then("65 to 74"),
+    when(dataset.age >= 75).then("75 and over"),
+    when(dataset.age.is_null()).then("Missing"),
+)
+
 # Computing the population records
 dataset.define_population(
     has_registration
     & dataset.sex.is_in(["male", "female"])
     & (dataset.age <= 120)
-    & patients.is_alive_on(end_date)
     & dataset.first_adhd_diagnosis_date.is_not_null()
     & dataset.first_mph_med_date.is_not_null()
 )
