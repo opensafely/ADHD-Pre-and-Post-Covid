@@ -39,15 +39,17 @@ output['rolling_6_month_sum'] = (
     .reset_index(level=[0,1], drop=True)
 )
 
+#Need to drop the 'size' column as it is not needed anymore
+output = output.drop(columns=['size'])
 
-# # #Adding a small number suprresion
-# rounding_unit = 10
-# output['size'] = np.ceil(output['size'] / rounding_unit)
-# output['size'] = output['size'] * rounding_unit
+# Adding a small number suppression
+rounding_unit = 10
+output['rolling_6_month_sum'] = np.ceil(output['rolling_6_month_sum'] / rounding_unit)
+output['rolling_6_month_sum'] = output['rolling_6_month_sum'] * rounding_unit
 
-# # #Adding a set time stamp
-# output['timestamp'] = add_datestamp()
+# Adding a set time stamp
+output['timestamp'] = add_datestamp()
 
-# # Saving the table
+# Saving the table
 output.to_csv("output/Table_3_rolling_6_month_medication.csv")
 
