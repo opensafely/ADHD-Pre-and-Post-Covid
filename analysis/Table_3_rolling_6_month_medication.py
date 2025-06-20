@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 import numpy as np
+import datetime
+from dateutil.relativedelta import relativedelta
 
 from table_wrangle_functions import (
     add_datestamp
@@ -38,6 +40,17 @@ output['rolling_6_month_sum'] = (
     .sum()
     .reset_index(level=[0,1], drop=True)
 )
+
+# Convert 'last_mph_med_date_month_date' to datetime with day as 1st
+output['last_mph_med_date_month_date'] = pd.to_datetime(
+    output['last_mph_med_date_month_date'] + '-01', format='%Y-%m-%d'
+)
+
+# Filter thethe data to only include dates from 2016-04-01 onwards
+output = output[output['last_mph_med_date_month_date'] >= '2016-04-01']
+
+# Convert 'last_mph_med_date_month_date' back to string format for final output
+output['last_mph_med_date_month_date'] = output['last_mph_med_date_month_date'].dt.strftime('%Y-%m')
 
 #Need to drop the 'size' column as it is not needed anymore
 output = output.drop(columns=['size'])
