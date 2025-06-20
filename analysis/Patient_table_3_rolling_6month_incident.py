@@ -18,7 +18,7 @@ from codelists import (
 )
 
 dataset = create_dataset()
-dataset.configure_dummy_data(population_size=50)
+dataset.configure_dummy_data(population_size=1000)
 
 # Date range
 start_date_point = "2016-04-01"
@@ -26,7 +26,7 @@ end_date_point = "2025-03-31"
 
 # Population variables
 has_registration = practice_registrations.where(
-        practice_registrations.start_date.is_on_or_after(start_date_point - months(6))
+        practice_registrations.start_date.is_on_or_after(start_date_point - months(7))
     ).exists_for_patient()
 
 dataset.sex = patients.sex

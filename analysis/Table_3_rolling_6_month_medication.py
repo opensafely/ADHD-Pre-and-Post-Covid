@@ -22,6 +22,23 @@ adhd_medication_data['last_mph_med_date_month_date'] = (
     adhd_medication_data['last_mph_med_date'].apply(lambda x: x.strftime('%Y-%m'))
 )
 
+output = (
+    adhd_medication_data
+            .groupby(['last_mph_med_date_month_date','age_band','sex'],as_index=False).size()
+)
+
+# Sort values for correct rolling calculation
+output = output.sort_values(['age_band', 'sex', 'last_mph_med_date_month_date'])
+
+# Calculate rolling 6-month sum within each group
+output['rolling_6_month_sum'] = (
+    output
+    .groupby(['age_band', 'sex'])['size']
+    .rolling(window=6, min_periods=1)
+    .sum()
+    .reset_index(level=[0,1], drop=True)
+)
+
 
 # # #Adding a small number suprresion
 # rounding_unit = 10
@@ -32,5 +49,5 @@ adhd_medication_data['last_mph_med_date_month_date'] = (
 # output['timestamp'] = add_datestamp()
 
 # # Saving the table
-# output.to_csv("output/Table_5_time_from_diagnosis_to_treatment.csv")
+output.to_csv("output/Table_3_rolling_6_month_medication.csv")
 

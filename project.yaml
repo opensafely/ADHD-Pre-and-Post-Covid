@@ -60,6 +60,13 @@ actions:
       highly_sensitive:
         measure: output/Patient_table_3_rolling_6month_incident.csv.gz
 
+  Table_5_time_from_diagnosis_to_treatment:
+    run: python:v2 python analysis/Table_3_rolling_6_month_medication.py
+    needs: [Patient_table_3_rolling_6month_incident]
+    outputs:
+      moderately_sensitive:
+        table1: analysis/Table_3_rolling_6_month_medication.py
+
   Table_3_with_ADHD_that_are_prescribed_ADHD_medication:
     run: > 
       ehrql:v1 generate-measures analysis/Table_3_with_ADHD_that_are_prescribed_ADHD_medication.py
