@@ -1,4 +1,4 @@
-from ehrql import create_dataset, case, create_measures, when, years
+from ehrql import create_dataset, case, create_measures, when, years, months
 from ehrql.tables.tpp import (
     patients,
     practice_registrations,
@@ -18,7 +18,7 @@ from codelists import (
 )
 
 dataset = create_dataset()
-dataset.configure_dummy_data(population_size=1000)
+dataset.configure_dummy_data(population_size=50)
 
 # Date range
 start_date_point = "2016-04-01"
@@ -26,7 +26,7 @@ end_date_point = "2025-03-31"
 
 # Population variables
 has_registration = practice_registrations.where(
-        practice_registrations.start_date.is_on_or_after(start_date_point)
+        practice_registrations.start_date.is_on_or_after(start_date_point - months(6))
     ).exists_for_patient()
 
 dataset.sex = patients.sex
@@ -43,15 +43,6 @@ dataset.first_adhd_diagnosis_date = first_matching_event(
     clinical_events, adhd_codelist
 ).date
 
-# Number of counts for ADHD diagonsis and readmission
-dataset.count_adhd_diagnoses = clinical_events.where(
-    clinical_events.snomedct_code.is_in(adhd_codelist)
-).count_for_patient()
-
-dataset.count_adhd_resolved = clinical_events.where(
-    clinical_events.snomedct_code.is_in(adhd_codelist)
-).count_for_patient()
-
 dataset.last_mph_med_date = (
     medications.where(True)
     .where(medications.dmd_code.is_in(adhd_medication_codelist))
@@ -61,12 +52,8 @@ dataset.last_mph_med_date = (
     .date
 )
 
-# Compute the date gap
-dataset.times_between_dia_med_weeks = (
-    dataset.last_mph_med_date - dataset.first_adhd_diagnosis_date
-).weeks
-
 dataset.year_of_medication = (dataset.last_mph_med_date).year
+dataset.month_of_medication = (dataset.last_mph_med_date).month
 
 #Computing the age at the point of medication
 dataset.age = patients.age_on(dataset.last_mph_med_date)

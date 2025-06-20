@@ -52,13 +52,13 @@ actions:
       moderately_sensitive:
         measure: output/Table_2_Prevalence_of_ADHD_Remission.csv
 
-  Table_3_rolling_6month_incident:
+  Patient_table_3_rolling_6month_incident:
     run: > 
-      ehrql:v1 generate-dataset analysis/Table_3_rolling_6month_incident.py
-      --output output/Table_3_rolling_6month_incident.csv.gz
+      ehrql:v1 generate-dataset analysis/Patient_table_3_rolling_6month_incident.py
+      --output output/Patient_table_3_rolling_6month_incident.csv.gz
     outputs:
       highly_sensitive:
-        measure: output/Table_3_rolling_6month_incident.csv.gz
+        measure: output/Patient_table_3_rolling_6month_incident.csv.gz
 
   Table_3_with_ADHD_that_are_prescribed_ADHD_medication:
     run: > 
