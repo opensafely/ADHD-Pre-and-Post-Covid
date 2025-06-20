@@ -78,5 +78,5 @@ dataset.define_population(
     & (dataset.age <= 120)
     & dataset.first_adhd_diagnosis_date.is_not_null()
     & dataset.last_mph_med_date.is_not_null()
-    & (dataset.last_mph_med_date > dataset.first_adhd_diagnosis_date)
+    & (dataset.last_mph_med_date >= dataset.first_adhd_diagnosis_date)
 )

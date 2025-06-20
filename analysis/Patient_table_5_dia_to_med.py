@@ -40,15 +40,6 @@ dataset.first_adhd_diagnosis_date = first_matching_event(
     clinical_events, adhd_codelist
 ).date
 
-# Number of counts for ADHD diagonsis and readmission
-dataset.count_adhd_diagnoses = clinical_events.where(
-    clinical_events.snomedct_code.is_in(adhd_codelist)
-).count_for_patient()
-
-dataset.count_adhd_resolved = clinical_events.where(
-    clinical_events.snomedct_code.is_in(adhd_codelist)
-).count_for_patient()
-
 dataset.first_mph_med_date = (
     medications.where(True)
     .where(medications.dmd_code.is_in(adhd_medication_codelist))
@@ -88,4 +79,5 @@ dataset.define_population(
     & (dataset.age <= 120)
     & dataset.first_adhd_diagnosis_date.is_not_null()
     & dataset.first_mph_med_date.is_not_null()
+    & (dataset.first_mph_med_date >= dataset.first_adhd_diagnosis_date)
 )
