@@ -32,14 +32,7 @@ output = (
 # Sort values for correct rolling calculation
 output = output.sort_values(['age_band', 'sex', 'last_mph_med_date_month_date'])
 
-# Calculate rolling 6-month sum within each group
-output['rolling_6_month_sum'] = (
-    output
-    .groupby(['age_band', 'sex'])['size']
-    .rolling(window=6, min_periods=1)
-    .sum()
-    .reset_index(level=[0,1], drop=True)
-)
+
 
 # Convert 'last_mph_med_date_month_date' to datetime with day as 1st
 output['last_mph_med_date_month_date'] = pd.to_datetime(
