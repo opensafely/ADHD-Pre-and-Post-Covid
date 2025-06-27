@@ -2,6 +2,8 @@ from datetime import (
     datetime
 )
 
+from dateutil import relativedelta
+
 def add_datestamp():
     """Getting a time stamp link
 
@@ -12,10 +14,17 @@ def add_datestamp():
 
     return datetime_string
 
-def monthly_interval_list(start_date, end_date)
+def monthly_interval_list(start_date, end_date):
     
-    #differnce in months
-    
+    #Differnce in months
+    delta = relativedelta.relativedelta(end_date, start_date)
+
+    res_months = delta.months + (delta.years * 12)
+
+    interval_array = [start_date + relativedelta.relativedelta(months=each_month) for each_month in range(res_months+1)]
+
+    return interval_array
+
 
 def rolling_6_month_sum(
         dataframe,
