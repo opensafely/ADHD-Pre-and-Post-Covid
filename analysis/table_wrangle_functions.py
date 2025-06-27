@@ -1,8 +1,9 @@
 from datetime import (
     datetime
 )
-
+import pandas as pd
 from dateutil import relativedelta
+
 
 def add_datestamp():
     """Getting a time stamp link
@@ -45,6 +46,7 @@ def rolling_6_month_sum(
     column_group = ['age_band','sex'],
     rolling_col_name = 'rolling',
     ):
+
     """
     Calculates a 6-month rolling sum for a specified count column in a DataFrame, grouped by specified columns and date.
     Parameters:
@@ -105,4 +107,4 @@ def rolling_6_month_sum(
         # Concatenate each_roll into empty_df
         output_table_with_rolling = pd.concat([output_table_with_rolling, each_roll], ignore_index=True)
 
-    for output_table_with_rolling
+    return output_table_with_rolling

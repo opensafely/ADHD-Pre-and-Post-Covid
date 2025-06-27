@@ -11,6 +11,10 @@ from table_wrangle_functions import (
     rolling_6_month_sum
 )
 
+# The key parameters
+rolling_col_name = 'rolling_6_month_sum'
+threshold_date = '2016-04-01'
+
 # Ensure the 'outputs' directory exists
 output_dir = "output"
 os.makedirs(output_dir, exist_ok=True)
@@ -37,12 +41,10 @@ output = (
             .groupby(['last_mph_med_date_month_date','age_band','sex'],as_index=False).size()
 )
 
-
-rolling_col_name = 'rolling_6_month_sum'
 output = rolling_6_month_sum(output, rolling_col_name = rolling_col_name)
 
 # Filter thethe data to only include dates from 2016-04-01 onwards
-output = output[output['last_mph_med_date_month_date'] >= '2016-04-01']
+output = output[output['last_mph_med_date_month_date'] >= threshold_date]
 
 # Adding a small number suppression
 rounding_unit = 10
@@ -52,6 +54,6 @@ output['rolling_6_month_sum'] = output['rolling_6_month_sum'] * rounding_unit
 # Adding a set time stamp
 output['timestamp'] = add_datestamp()
 
-# # Saving the table
-# output.to_csv("output/Table_3_rolling_6_month_medication.csv")
+# Saving the table
+output.to_csv("output/Table_3_rolling_6_month_medication.csv")
 
