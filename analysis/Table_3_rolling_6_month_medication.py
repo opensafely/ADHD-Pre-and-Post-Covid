@@ -1,11 +1,14 @@
 import os
 import pandas as pd
 import numpy as np
-import datetime
+from datetime import (
+    datetime
+)
 from dateutil.relativedelta import relativedelta
 
 from table_wrangle_functions import (
-    add_datestamp
+    add_datestamp,
+    rolling_6_month_sum
 )
 
 # Ensure the 'outputs' directory exists
@@ -20,8 +23,13 @@ adhd_medication_data['last_mph_med_date'] = (
     pd.to_datetime(adhd_medication_data['last_mph_med_date'], format='%Y-%m-%d')
 )
 
+#This is a crude way of removing the day
 adhd_medication_data['last_mph_med_date_month_date'] = (
     adhd_medication_data['last_mph_med_date'].apply(lambda x: x.strftime('%Y-%m'))
+)
+
+adhd_medication_data['last_mph_med_date_month_date'] = (
+    pd.to_datetime(adhd_medication_data['last_mph_med_date_month_date'], format='%Y-%m')
 )
 
 output = (
@@ -29,24 +37,12 @@ output = (
             .groupby(['last_mph_med_date_month_date','age_band','sex'],as_index=False).size()
 )
 
-# Sort values for correct rolling calculation
-output = output.sort_values(['age_band', 'sex', 'last_mph_med_date_month_date'])
 
-
-
-# Convert 'last_mph_med_date_month_date' to datetime with day as 1st
-output['last_mph_med_date_month_date'] = pd.to_datetime(
-    output['last_mph_med_date_month_date'] + '-01', format='%Y-%m-%d'
-)
+rolling_col_name = 'rolling_6_month_sum'
+output = rolling_6_month_sum(output, rolling_col_name = rolling_col_name)
 
 # Filter thethe data to only include dates from 2016-04-01 onwards
 output = output[output['last_mph_med_date_month_date'] >= '2016-04-01']
-
-# Convert 'last_mph_med_date_month_date' back to string format for final output
-output['last_mph_med_date_month_date'] = output['last_mph_med_date_month_date'].dt.strftime('%Y-%m')
-
-#Need to drop the 'size' column as it is not needed anymore
-output = output.drop(columns=['size'])
 
 # Adding a small number suppression
 rounding_unit = 10
@@ -56,6 +52,6 @@ output['rolling_6_month_sum'] = output['rolling_6_month_sum'] * rounding_unit
 # Adding a set time stamp
 output['timestamp'] = add_datestamp()
 
-# Saving the table
-output.to_csv("output/Table_3_rolling_6_month_medication.csv")
+# # Saving the table
+# output.to_csv("output/Table_3_rolling_6_month_medication.csv")
 
