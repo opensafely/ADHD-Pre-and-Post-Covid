@@ -15,7 +15,12 @@ Each query is logged in [OpenSAFELY Jobs](https://jobs.opensafely.org/examining-
 
 The repo can be run on [dummy data](https://docs.opensafely.org/ehrql/how-to/dummy-data/) using [GitHub Codespaces]( https://docs.opensafely.org/getting-started/how-to/use-github-codespaces-in-your-project/)
 
-The [metadata of clinical code]( https://www.opencodelists.org/) used in this study can be found in our [Codelist file]( https://github.com/opensafely/ADHD-Pre-and-Post-Covid/blob/main/analysis/codelists.py).
+### Metadata
+
+The [metadata of clinical codes]( https://www.opencodelists.org/) used in this study are followed:
+* [Attention Deficit Hyperactivity Disorder codes](https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/adhd_cod/20200812/)
+* [Attention Deficit Hyperactivity Disorder in remission codes](https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/adhdrem_cod/20200812/)
+*[Attention Deficit Hyperactivity Disorder Medication](https://www.opencodelists.org/codelist/user/Adam/adhd-dmd/59d39fe1/#full-list)
 
 ## Compliance
 
