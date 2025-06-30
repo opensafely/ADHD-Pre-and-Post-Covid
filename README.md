@@ -20,7 +20,7 @@ The repo can be run on [dummy data](https://docs.opensafely.org/ehrql/how-to/dum
 The [metadata of clinical codes]( https://www.opencodelists.org/) used in this study are followed:
 * [Attention Deficit Hyperactivity Disorder codes](https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/adhd_cod/20200812/)
 * [Attention Deficit Hyperactivity Disorder in remission codes](https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/adhdrem_cod/20200812/)
-*[Attention Deficit Hyperactivity Disorder Medication](https://www.opencodelists.org/codelist/user/Adam/adhd-dmd/59d39fe1/#full-list)
+* [Attention Deficit Hyperactivity Disorder Medication](https://www.opencodelists.org/codelist/user/Adam/adhd-dmd/59d39fe1/#full-list)
 
 ## Compliance
 
