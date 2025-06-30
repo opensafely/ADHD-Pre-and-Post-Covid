@@ -9,7 +9,7 @@ Detail description of the project can be found on our [protocol]( https://github
 
 Each query is logged in [OpenSAFELY Jobs](https://jobs.opensafely.org/examining-changes-in-adhd-diagnosis-and-pathways-in-primary-care-pre-and-post-covid-pandemic/adhd-pre-and-post-covid/) 
 
-
+This repo aims to be at [Baseline level RAP](https://nhsdigital.github.io/rap-community-of-practice/introduction_to_RAP/levels_of_RAP/#baseline-rap-getting-the-fundamentals-right)
 
 ## Prerequisites
 
