@@ -48,7 +48,7 @@ dataset.last_mph_med_date = (
     .where(medications.dmd_code.is_in(adhd_medication_codelist))
     .where(medications.date.is_on_or_after(dataset.first_adhd_diagnosis_date))
     .sort_by(medications.date)
-    .first_for_patient()
+    .last_for_patient()
     .date
 )
 
@@ -63,11 +63,8 @@ dataset.age_band = case(
     when((dataset.age >= 10) & (dataset.age <= 17)).then("10 to 17"),
     when((dataset.age >= 18) & (dataset.age <= 24)).then("18 to 24"),
     when((dataset.age >= 25) & (dataset.age <= 34)).then("25 to 34"),
-    when((dataset.age >= 35) & (dataset.age <= 44)).then("35 to 44"),
-    when((dataset.age >= 45) & (dataset.age <= 54)).then("45 to 54"),
-    when((dataset.age >= 55) & (dataset.age <= 64)).then("55 to 64"),
-    when((dataset.age >= 65) & (dataset.age <= 74)).then("65 to 74"),
-    when(dataset.age >= 75).then("75 and over"),
+    when((dataset.age >= 35) & (dataset.age <= 54)).then("35 to 54"),
+    when(dataset.age >= 55).then("55 and over"),
     when(dataset.age.is_null()).then("Missing"),
 )
 
