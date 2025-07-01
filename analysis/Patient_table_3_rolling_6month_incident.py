@@ -48,7 +48,7 @@ dataset.last_mph_med_date = (
     .where(medications.dmd_code.is_in(adhd_medication_codelist))
     .where(medications.date.is_on_or_after(dataset.first_adhd_diagnosis_date))
     .sort_by(medications.date)
-    .first_for_patient()
+    .last_for_patient()
     .date
 )
 
