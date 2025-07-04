@@ -24,8 +24,10 @@ adhd_medication_date_data = pd.read_csv("output/Patient_table_5_dia_to_med.csv.g
 # Convert medication date column to datetime if not already
 adhd_medication_date_data['first_mph_med_date'] = pd.to_datetime(adhd_medication_date_data['first_mph_med_date'], format='%Y-%m-%d')
 
-# Filter out rows where 'first_mph_med_date' is before 2016-04-01
-adhd_medication_date_data = adhd_medication_date_data[adhd_medication_date_data['first_mph_med_date'] >= '2016-04-01']
+# Filter out rows with the defined the first and end point
+adhd_medication_date_data = adhd_medication_date_data[adhd_medication_date_data['first_mph_med_date'] >= start_date]
+adhd_medication_date_data = adhd_medication_date_data[adhd_medication_date_data['first_mph_med_date'] <= end_date]
+
 
 # Create a 'year_of_medication' column that groups April-March as a year
 adhd_medication_date_data['year_of_medication'] = adhd_medication_date_data['first_mph_med_date'].apply(
