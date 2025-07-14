@@ -13,11 +13,11 @@ from table_wrangle_functions import (
 
 # The key parameters
 rolling_col_name = 'rolling_6_month_sum'
-threshold_start_date = '2016-04-01'
+threshold_start_date = pd.to_datetime('2016-04-01', format='%Y-%m-%d') 
 date_column = 'last_mph_med_date_month_date'
 count_column = 'size'
 column_group = ['sex','age_band']
-start_date = pd.to_datetime(threshold_start_date, format='%Y-%m-%d') - relativedelta(months=7)
+start_date = threshold_start_date - relativedelta(months=7)
 end_date =pd.to_datetime("2025-04-01", format='%Y-%m-%d')
 
 # Ensure the 'outputs' directory exists
@@ -59,8 +59,7 @@ output = (
 )
 
 # Filter to the start and end date
-threshold_start_date_in_datetime_type = pd.to_datetime(threshold_start_date, format='%Y-%m-%d')
-output = output[output[date_column] >= threshold_start_date_in_datetime_type]
+output = output[output[date_column] >= threshold_start_date]
 
 # Drop the size count
 output = output.drop(columns=[count_column])
