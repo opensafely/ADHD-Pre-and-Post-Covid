@@ -10,7 +10,7 @@ from table_wrangle_functions import (
 start_date_string = "2016-04-01"
 start_date = pd.to_datetime(start_date_string, format='%Y-%m-%d')
 
-end_date_point = "2025-03-31"
+end_date_point = "2025-04-01"
 end_date = pd.to_datetime(end_date_point, format='%Y-%m-%d')
 
 

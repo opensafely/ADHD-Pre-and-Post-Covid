@@ -18,7 +18,7 @@ date_column = 'last_mph_med_date_month_date'
 count_column = 'size'
 column_group = ['sex','age_band']
 start_date = pd.to_datetime(threshold_start_date, format='%Y-%m-%d') - relativedelta(months=7)
-end_date =pd.to_datetime("2025-05-01", format='%Y-%m-%d')
+end_date =pd.to_datetime("2025-04-01", format='%Y-%m-%d')
 
 # Ensure the 'outputs' directory exists
 output_dir = "output"
@@ -59,8 +59,8 @@ output = (
 )
 
 # Filter to the start and end date
-threshold_start_date = pd.to_datetime(threshold_start_date, format='%Y-%m-%d')
-output = output[output[date_column] >= threshold_date_dt]
+threshold_start_date_in_datetime_type = pd.to_datetime(threshold_start_date, format='%Y-%m-%d')
+output = output[output[date_column] >= threshold_start_date_in_datetime_type]
 
 # Drop the size count
 output = output.drop(columns=[count_column])
