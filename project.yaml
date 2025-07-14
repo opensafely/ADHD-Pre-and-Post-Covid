@@ -4,7 +4,7 @@ version: '3.0'
 expectations:
   population_size: 5000
 
-# actions:
+actions:
 #   generate_dataset:
 #     run: > 
 #       ehrql:v1 generate-dataset analysis/dataset_definition_dx_to_med_time.py
