@@ -1,4 +1,4 @@
-# List of 0utputs
+# List of Outputs
 
 The purpose of this document is to provide context of each file as requested in the [documentation](https://docs.opensafely.org/using-opensafely/viewing-and-releasing-outputs/viewing-and-releasing-with-airlock/how-tos/create-and-submit-a-release-request/)
 
@@ -13,4 +13,6 @@ In this section, all outputs are generated using the [measures framework](https:
 * Table_3_are_prescribed_ADHD_medication_in_ADHD_group - The file displays the prevalence including counts of patients that have taken ADHD medication in the population of patients of with ADHD diagnosis code.
 
 ## User defined outputs
-In this section, all outputs are curated by the user
+In this section, all outputs are curated by the author
+
+* 
