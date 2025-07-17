@@ -15,4 +15,10 @@ In this section, all outputs are generated using the [measures framework](https:
 ## User defined outputs
 In this section, all outputs are curated by the author
 
-* 
+* Table_3_rolling_6_month_medication – The table shows a 6 month rolling cumulative summation count of patients taking ADHD medication at monthly intervals April 2016 to April 2025. The summation counts are broken down by sex and age. Disclosure Control:
+    * The age category is grouped at a larger age range in 35 and over to suppress small numbers.
+    * The final figure in the rolling_6_month_sum is rounded up by unit of 10.
+* Table_5_time_from_diagnosis_to_treatment – Shows the medium and mean time between the first diagnosis date and first medication date. In addition, shows the counts of the population size.
+    * The size figure is rounded up to the near unit of 10.
+    * The minimum size is floored at 20 to avoid possible secondary exposure.
+    * The mean and medium of weeks are rounded.
