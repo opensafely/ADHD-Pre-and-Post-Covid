@@ -68,7 +68,7 @@ has_adhd_cod_date = first_matching_event(selected_conditions, adhd_codelist).dat
 has_med_and_no_dia = has_med_date.is_not_null() & (has_adhd_cod_date.is_null())
 
 #Computing group 2 - medication before diagnosis
-has_meds_before_dia = has_adhd_cod_date > has_med_date
+has_meds_before_dia = has_adhd_cod_date < has_med_date
 has_meds_before_dia = has_meds_before_dia.is_not_null()
 
 has_med_only = has_med_and_no_dia | has_meds_before_dia
