@@ -14,7 +14,7 @@ from codelists import (
 )
 
 dataset = create_dataset()
-dataset.configure_dummy_data(population_size=5)
+dataset.configure_dummy_data(population_size=5000)
 
 # Date range
 start_date = "2016-04-01"
@@ -47,10 +47,7 @@ dataset.count_adhd_resolved = clinical_events.where(
 ).count_for_patient()
 
 dataset.first_mph_med_date = (
-    medications.where(True)
-    .where(medications.dmd_code.is_in(adhd_medication_codelist))
-    .where(medications.date.is_on_or_after(dataset.first_adhd_diagnosis_date))
-    .sort_by(medications.date)
+    medications
     .first_for_patient()
     .date
 )
@@ -59,6 +56,8 @@ dataset.first_mph_med_date = (
 dataset.times_between_dia_med_weeks = (
     dataset.first_mph_med_date - dataset.first_adhd_diagnosis_date
 ).weeks
+
+dataset.partial_relation = dataset.first_mph_med_date > dataset.first_adhd_diagnosis_date
 
 # Computing the population records
 dataset.define_population(
