@@ -1,12 +1,14 @@
-from ehrql import INTERVAL, create_measures, years
+from ehrql import INTERVAL, case, create_measures, when, years
 from ehrql.tables.tpp import (
+    patients,
     practice_registrations,
     clinical_events,
+    medications,
 )
 
 from codelists import adhd_codelist, adhdrem_codelist
 
-from variables_library import last_matching_event
+from variables_library import last_matching_event, add_datestamp
 
 measures = create_measures()
 measures.configure_dummy_data(population_size=10)
@@ -36,25 +38,14 @@ selected_events = clinical_events.where(
     clinical_events.date.is_on_or_before(INTERVAL.end_date)
 )
 
-has_adhd_cod_date = last_matching_event(selected_events, adhd_codelist).date
-
 has_adhdrem_cod_date = last_matching_event(selected_events, adhdrem_codelist).date
 
-# Select patients with a diagnosis of ADHD
-has_adhd_rule_1 = has_adhd_cod_date.is_not_null()
-
-# Select patients with:
-# (a) no remission code or
-# (b) a new ADHD diagnosis after the most recent remission code
-has_adhd_rule_2 = (has_adhdrem_cod_date.is_null()) | (
-    has_adhd_cod_date > has_adhdrem_cod_date
-)
-
-has_adhd_rule_1_and_2 = has_adhd_rule_1 & has_adhd_rule_2
+#Rule being remission date must come after the condeition date 
+has_adhdrem_rule = has_adhdrem_cod_date.is_not_null()
 
 measures.define_measure(
-    name=f"adhd_prevalence_same",
-    numerator=has_adhd_rule_1_and_2,
+    name=f"Table_2_Prevalence_of_ADHD_Remission" + add_datestamp(),
+    numerator=has_adhdrem_rule,
     denominator=(
         has_registration
         & patients.sex.is_in(["male", "female"])

@@ -1,12 +1,14 @@
-from ehrql import INTERVAL, create_measures, years
+from ehrql import INTERVAL, case, create_measures, when, years
 from ehrql.tables.tpp import (
+    patients,
     practice_registrations,
     clinical_events,
+    medications,
 )
 
 from codelists import adhd_codelist, adhdrem_codelist
 
-from variables_library import last_matching_event
+from variables_library import last_matching_event, add_datestamp
 
 measures = create_measures()
 measures.configure_dummy_data(population_size=10)
@@ -53,7 +55,7 @@ has_adhd_rule_2 = (has_adhdrem_cod_date.is_null()) | (
 has_adhd_rule_1_and_2 = has_adhd_rule_1 & has_adhd_rule_2
 
 measures.define_measure(
-    name=f"adhd_prevalence_same",
+    name=f"Table_2_Prevalence_of_ADHD_Diagnosis" + add_datestamp(),
     numerator=has_adhd_rule_1_and_2,
     denominator=(
         has_registration
@@ -62,5 +64,5 @@ measures.define_measure(
         & patients.is_alive_on(INTERVAL.end_date)
     ),
     group_by={"sex": sex, "age_band": age_band},
-    intervals=years(3).starting_on("2021-04-01"),
+    intervals=years(9).starting_on("2016-04-01"),
 )

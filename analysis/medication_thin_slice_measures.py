@@ -1,15 +1,31 @@
-from ehrql import INTERVAL, create_measures, years
+from ehrql import INTERVAL, case, create_measures, when, years
 from ehrql.tables.tpp import (
+    patients,
     practice_registrations,
     clinical_events,
+    medications,
 )
 
-from codelists import adhd_codelist, adhdrem_codelist
+from codelists import (
+    adhd_codelist, 
+    adhdrem_codelist,
+    adhd_medication_codelist,
+    
+)
 
-from variables_library import last_matching_event
+from variables_library import (
+    first_matching_event, 
+    last_matching_event, 
+    event_ADHD,
+    first_medication_event
+)
+
+'''
+The following scripts looks at the measure of selected medication used
+'''
 
 measures = create_measures()
-measures.configure_dummy_data(population_size=10)
+measures.configure_dummy_data(population_size=10000)
 
 # Population variables
 has_registration = practice_registrations.spanning(
@@ -32,29 +48,24 @@ age_band = case(
 )
 
 # In terms of dates -  Latest <= RPED
-selected_events = clinical_events.where(
-    clinical_events.date.is_on_or_before(INTERVAL.end_date)
+selected_events = medications.where(
+    medications.date.is_on_or_before(INTERVAL.end_date)
 )
 
-has_adhd_cod_date = last_matching_event(selected_events, adhd_codelist).date
+has_med_date = first_medication_event(selected_events, adhd_medication_codelist).date
 
-has_adhdrem_cod_date = last_matching_event(selected_events, adhdrem_codelist).date
+has_adhd_cod_date = event_ADHD()
 
 # Select patients with a diagnosis of ADHD
-has_adhd_rule_1 = has_adhd_cod_date.is_not_null()
+rule_has_adhd = has_adhd_cod_date.is_not_null()
 
-# Select patients with:
-# (a) no remission code or
-# (b) a new ADHD diagnosis after the most recent remission code
-has_adhd_rule_2 = (has_adhdrem_cod_date.is_null()) | (
-    has_adhd_cod_date > has_adhdrem_cod_date
-)
+# Select patients with meds
+rule_has_meds = has_med_date.is_not_null()
 
-has_adhd_rule_1_and_2 = has_adhd_rule_1 & has_adhd_rule_2
-
+#This looks at the incidence of ADHD medication in the entire population
 measures.define_measure(
-    name=f"adhd_prevalence_same",
-    numerator=has_adhd_rule_1_and_2,
+    name= f"adhd_medication_general",
+    numerator= rule_has_meds,
     denominator=(
         has_registration
         & patients.sex.is_in(["male", "female"])
@@ -62,5 +73,6 @@ measures.define_measure(
         & patients.is_alive_on(INTERVAL.end_date)
     ),
     group_by={"sex": sex, "age_band": age_band},
-    intervals=years(3).starting_on("2021-04-01"),
+    intervals=years(9).starting_on("2016-04-01"),
 )
+
