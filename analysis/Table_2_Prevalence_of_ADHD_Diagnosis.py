@@ -11,7 +11,7 @@ from codelists import adhd_codelist, adhdrem_codelist
 from variables_library import last_matching_event, add_datestamp
 
 measures = create_measures()
-measures.configure_dummy_data(population_size=10)
+measures.configure_dummy_data(population_size=10000)
 
 # Population variables
 has_registration = practice_registrations.spanning(
@@ -44,7 +44,7 @@ has_adhdrem_cod_date = last_matching_event(selected_events, adhdrem_codelist).da
 
 # Select patients with a diagnosis of ADHD
 #has_adhd_rule_1 = has_adhd_cod_date.is_not_null()
-has_adhd_rule_1 = has_adhd_cod_date < "2020-01-01"
+has_adhd_rule_1 = has_adhd_cod_date > "2020-01-01"
 
 # Select patients with:
 # (a) no remission code or
