@@ -43,7 +43,8 @@ has_adhd_cod_date = last_matching_event(selected_events, adhd_codelist).date
 has_adhdrem_cod_date = last_matching_event(selected_events, adhdrem_codelist).date
 
 # Select patients with a diagnosis of ADHD
-has_adhd_rule_1 = has_adhd_cod_date.is_not_null()
+#has_adhd_rule_1 = has_adhd_cod_date.is_not_null()
+has_adhd_rule_1 = has_adhd_cod_date < "2020-01-01"
 
 # Select patients with:
 # (a) no remission code or
