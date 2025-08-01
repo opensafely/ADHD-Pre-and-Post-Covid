@@ -10,6 +10,7 @@ url_keys = [x for x in keys_in_config_dict if ('url' in x)]
 for each_url_key in url_keys:
     url = config[each_url_key]
     response = requests.get(url)
+    print(each_url_key)
     filename = config['file_path_to_save'] + os.path.basename(url)
     with open(filename, "wb") as f:
         f.write(response.content)
