@@ -27,6 +27,7 @@ config = {
     'rename_col_for_denominator' : {'VALUE': 'denominator'},
     'rename_cols_indices': {'SEX':'sex','AGE_BAND':'age_band'},
     'nhs_sex_col': 'SEX',
+    'nhs_ageband_col':'AGE_BAND',
     'nhs_indicator_col':'INDICATOR',
     'nhs_vaule_col':'VALUE',
     'nhs_ratio_col':'ratio',
