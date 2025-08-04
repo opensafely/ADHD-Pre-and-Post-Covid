@@ -24,7 +24,30 @@ def getting_start_ends_dates(each_key):
 
     return start_date, end_date
 
-def wrangling_table_to_opensafely_form(each_csv,each_key):
+def wrangling_table_to_opensafely_form(each_csv,each_key,config):
+    def wrangling_table_to_opensafely_form(each_csv, each_key, config):
+        """
+        Transforms and aggregates a DataFrame to match the output format required by OpenSAFELY.
+        This function performs the following steps:
+        1. Selects columns of interest from the input DataFrame.
+        2. Renames the values in the sex column according to the provided mapping.
+        3. Filters and aggregates rows to compute numerator and denominator counts based on indicator values.
+        4. Merges the aggregated numerator and denominator counts on specified groupby indices.
+        5. Calculates the ratio of numerator to denominator for each group.
+        6. Adds interval start and end dates based on the provided key.
+        7. Reorders and selects columns to match the OpenSAFELY output specification.
+        Args:
+            each_csv (pd.DataFrame): The input DataFrame containing raw data.
+            each_key (Any): A key used to determine the interval start and end dates.
+            config (dict): A configuration dictionary specifying column names, mappings, and other parameters.
+        Returns:
+            pd.DataFrame: A DataFrame formatted according to OpenSAFELY requirements, including computed ratios and interval dates.
+        """
+
+    #Wrangle the file to match opensafely's outputs
+
+    #Getting the correct cols
+    each_csv = each_csv[config['cols_of_interest']]
 
     #Rename the Sex col
     each_csv[config['nhs_sex_col']] = each_csv[config['nhs_sex_col']].replace(config['sex_rename'])
@@ -40,13 +63,13 @@ def wrangling_table_to_opensafely_form(each_csv,each_key):
 
     #Join
     each_ratio = pd.merge(each_adhd_counts, each_all_counts, on=config['groupby_index'])
-    each_ratio = each_ratio.rename(columns=config['raname_cols_indices'])
+    each_ratio = each_ratio.rename(columns=config['rename_cols_indices'])
 
     #Computing the ratio
     each_ratio[config['nhs_ratio_col']] = each_ratio[config['nhs_numerator_col']]/each_ratio[config['nhs_denominator_col']]
     
     #Need to set out the year
-    start_date, end_date = utils.getting_start_ends_dates(each_key)
+    start_date, end_date = getting_start_ends_dates(each_key)
     
     each_ratio[config['interval_start']] = start_date
     each_ratio[config['interval_end']] = end_date

@@ -23,7 +23,7 @@ config = {
     'cols_of_interest': ['YEAR','SEX','INDICATOR','AGE_BAND','VALUE'],
     'rename_col_for_numerator' : {'VALUE': 'numerator'},
     'rename_col_for_denominator' : {'VALUE': 'denominator'},
-    'raname_cols_indices': {'SEX':'sex','AGE_BAND':'age_band'},
+    'rename_cols_indices': {'SEX':'sex','AGE_BAND':'age_band'},
     'nhs_sex_col': 'SEX',
     'nhs_indicator_col':'INDICATOR',
     'nhs_vaule_col':'VALUE',
@@ -37,6 +37,8 @@ config = {
         'interval_end',
         'ratio',
         'numerator',
-        'denominator'
+        'denominator',
+        'sex',
+        'age_band'
     ]
     }
