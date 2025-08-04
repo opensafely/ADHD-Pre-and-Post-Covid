@@ -59,9 +59,12 @@ def wrangling_table_to_opensafely_form(each_csv,each_key,config):
     #Computing the ratio
     each_adhd_counts = each_csv[each_csv[config['nhs_indicator_col']].isin(config['numerator'])]
     each_all_counts = each_csv[each_csv[config['nhs_indicator_col']].isin(config['denominator'])]
+    #Need to correct the age bands
+    each_all_counts = each_all_counts.replace({config['nhs_ageband_col']:config['age_band_correction']})
 
     each_adhd_counts = each_adhd_counts.groupby(config['groupby_index'], as_index=False)[config['nhs_vaule_col']].sum()
     each_adhd_counts = each_adhd_counts.rename(columns=config['rename_col_for_numerator'])
+
     each_all_counts = each_all_counts.groupby(config['groupby_index'], as_index=False)[config['nhs_vaule_col']].sum()
     each_all_counts = each_all_counts.rename(columns=config['rename_col_for_denominator'])
 
