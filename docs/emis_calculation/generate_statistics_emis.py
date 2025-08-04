@@ -2,6 +2,7 @@ import pandas as pd
 import requests
 from config import config
 import os
+import zipfile
 
 # Need to save the data
 keys_in_config_dict = list(config.keys())
@@ -15,7 +16,15 @@ for each_url_key in url_keys:
     with open(filename, "wb") as f:
         f.write(response.content)
 
+zip_files = [f for f in os.listdir(config['file_path_to_save']) if f.endswith('.zip')]
 
+for each_zip_file in zip_files:
+    zip_path = os.path.join(config['file_path_to_save'], each_zip_file)
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        zip_ref.extractall(config['file_path_to_save'])
+
+
+print('done')
 # df_emis = pd.read_csv(url)
 
 # response = requests.get(url)
