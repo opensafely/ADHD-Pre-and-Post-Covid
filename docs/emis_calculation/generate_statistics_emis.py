@@ -15,6 +15,8 @@ if missing_files:
 
 dict_of_files = config['list_of_csv']
 
+combined_table_emis = pd.DataFrame()
+
 for each_key in list(dict_of_files.keys()):
 
     #opening each file
@@ -23,22 +25,6 @@ for each_key in list(dict_of_files.keys()):
     #Wrangle the file to match OS's outputs
     each_ratio = utils.wrangling_table_to_opensafely_form(each_csv,each_key,config)
 
+    combined_table_emis = pd.concat([combined_table_emis,each_ratio], axis=0, ignore_index=True)
 
-
-# # Read the CSV file into a Pandas DataFrame
-# ld_data_adhd = pd.read_csv(file_path)
-# ld_data_adhd['SEX'] = ld_data_adhd['SEX'].replace(sex_rename)
-
-# # Need to filter the codes LDOB089 and LDOB091
-# adhd_counts = ld_data_adhd[ld_data_adhd['INDICATOR'].isin(adhd_code)]
-# all_counts = ld_data_adhd[ld_data_adhd['INDICATOR'].isin(all_code)]
-
-# #Need to sum over
-# adhd_counts = adhd_counts.groupby(groupby_index, as_index=False)['VALUE'].sum()
-# all_counts = all_counts.groupby(groupby_index, as_index=False)['VALUE'].sum()
-
-# #Need to some renaming
-# adhd_counts = adhd_counts.rename(columns={'VALUE': 'numerator'})
-# all_counts = all_counts.rename(columns={'VALUE': 'denominator'})
-
-# print(all_counts)
+combined_table_emis.to_csv(config['file_path_to_emis_measure'])
