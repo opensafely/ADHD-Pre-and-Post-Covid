@@ -6,21 +6,26 @@ import zipfile
 
 def getting_start_ends_dates(each_key):
     """
-    Generates start and end dates for a given key.
+    Given a string key representing a financial year in the format 'YYZZ', returns the start and end dates
+    of the financial year in 'YYYY-MM-DD' format.
 
     Args:
-        each_key (str): A string key where the first two and last two characters represent years.
+        each_key (str): A string representing the financial year, where the first two characters are the
+                        starting year (last two digits) and the last two characters are the ending year
+                        (last two digits). For example, '1920' for the 2019-2020 financial year.
 
     Returns:
-        tuple: A tuple containing the start date and end date as strings in the format 'DD/MM/YYYY'.
+        tuple: A tuple containing two strings:
+            - start_date (str): The start date of the financial year in 'YYYY-MM-DD' format (April 1st).
+            - end_date (str): The end date of the financial year in 'YYYY-MM-DD' format (March 31st).
 
     Example:
-        >>> getting_start_ends_dates('2122')
-        ('01/04/2021', '31/03/2022')
+        >>> getting_start_ends_dates('1920')
+        ('2019-04-01', '2020-03-31')
     """
 
-    start_date = '01/04/20' + each_key[:2]
-    end_date = '31/03/20' + each_key[-2:]
+    start_date = '20' + each_key[:2] + '-04-01'
+    end_date = '20' + each_key[-2:] + '-03-31'
 
     return start_date, end_date
 
