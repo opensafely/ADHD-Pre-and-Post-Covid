@@ -24,7 +24,7 @@ from variables_library import (
 )
 
 '''
-The following scripts looks at the measure of selected medication used
+The following scripts looks at percentage of patients on medication in the last months
 '''
 
 measures = create_measures()
