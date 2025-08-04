@@ -42,5 +42,20 @@ config = {
         'denominator',
         'sex',
         'age_band'
-    ]
+    ],
+    'age_band_correction' : {
+        '0 to 9':'0 to 9',
+        '10 to 13':'10 to 17',
+        '14 to 17':'10 to 17',
+        '18 to 24':'18 to 24',
+        '25 to 34':'25 to 34',
+        '35 to 44':'35 to 44',
+        '45 to 49':'45 to 54',
+        '50 to 54':'45 to 54',
+        '55 to 59':'55 to 64',
+        '60 to 64':'55 to 64',
+        '65 to 69':'65 to 74',
+        '70 to 74':'65 to 74',
+        '75 and over':'75 and over',
+    },
     }
