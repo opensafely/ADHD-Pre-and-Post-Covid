@@ -52,7 +52,7 @@ age_band = case(
 )
 
 selected_events = medications.where(
-    medications.date.is_on_or_after(INTERVAL.start_date - months(6))
+    medications.date.is_on_or_between((INTERVAL.start_date - months(6)), INTERVAL.end_date)
 )
 
 has_med_date = last_medication_event(selected_events, adhd_medication_codelist).date
