@@ -47,12 +47,8 @@ age_band = case(
     when((age >= 10) & (age <= 17)).then("10 to 17"),
     when((age >= 18) & (age <= 24)).then("18 to 24"),
     when((age >= 25) & (age <= 34)).then("25 to 34"),
-    when((age >= 35) & (age <= 44)).then("35 to 44"),
-    when((age >= 45) & (age <= 54)).then("45 to 54"),
-    when((age >= 55) & (age <= 64)).then("55 to 64"),
-    when((age >= 65) & (age <= 74)).then("65 to 74"),
-    when(age >= 75).then("75 and over"),
-    when(age.is_null()).then("Missing"),
+    when(age >= 35).then("35 and over"),
+    when( age.is_null()).then("Missing"),
 )
 
 selected_events = medications.where(
