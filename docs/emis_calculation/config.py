@@ -1,5 +1,3 @@
-
-
 config = {
     'url_2324':"https://files.digital.nhs.uk/FC/187D35/health_care_ld_sicbl_2023-24.csv",
     'url_2223':"https://files.digital.nhs.uk/43/BD15AC/health_care_ld_sicbl_2022-23.csv",
@@ -16,10 +14,20 @@ config = {
         '18_19':'Health and Care of People with Learning Disabilities SICBL data 2018-19.csv',
         '17_18':'Health and Care of People with Learning Disabilities SICBL data 2017-18.csv',
         '16_17':'Health and Care of People with Learning Disabilities CCG data 2016-17.csv'
-    }
+    },
     "groupby_index":['YEAR','SEX','AGE_BAND'],
     'numerator' : ['LDOB089','LDOB091'],
     'denominator' : ['LDOB003A' , 'LDOB003B'],
     'all_code' : ['ALL'],
-    'sex_rename' : {'F':'female' , 'M':'male'}
+    'sex_rename' : {'F':'female' , 'M':'male'},
+    'cols_of_interest': ['YEAR','SEX','INDICATOR','AGE_BAND','VALUE'],
+    'rename_col_for_numerator' : {'VALUE': 'numerator'},
+    'rename_col_for_denominator' : {'VALUE': 'denominator'},
+    'raname_cols_indices': {'SEX':'sex','AGE_BAND':'age_band'},
+    'nhs_sex_col': 'SEX',
+    'nhs_indicator_col':'INDICATOR',
+    'nhs_vaule_col':'VALUE',
+    'nhs_ratio_col':'ratio',
+    'nhs_denominator_col':'denominator',
+    'nhs_numerator_col':'numerator',
     }

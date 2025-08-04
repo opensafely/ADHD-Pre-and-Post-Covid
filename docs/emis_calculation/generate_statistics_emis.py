@@ -3,34 +3,46 @@ import requests
 from config import config
 import os
 import zipfile
+import utils
 
-# Need to save the data
-keys_in_config_dict = list(config.keys())
-url_keys = [x for x in keys_in_config_dict if ('url' in x)]
+# This function downloads the files
+utils.create_source_files_from_nhs_england(config)
 
-for each_url_key in url_keys:
-    url = config[each_url_key]
-    response = requests.get(url)
-    print(each_url_key)
-    filename = config['file_path_to_save'] + os.path.basename(url)
-    with open(filename, "wb") as f:
-        f.write(response.content)
+dict_of_files = config['list_of_csv']
 
-zip_files = [f for f in os.listdir(config['file_path_to_save']) if f.endswith('.zip')]
+for each_key in list(dict_of_files.keys()):
 
-for each_zip_file in zip_files:
-    zip_path = os.path.join(config['file_path_to_save'], each_zip_file)
-    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-        zip_ref.extractall(config['file_path_to_save'])
+    #opening each file
+    each_csv = pd.read_csv(config['file_path_to_save'] + dict_of_files[each_key])
+    
+    #Wrangle the file to match OS's outputs
 
+    #Getting the correct cols
+    each_csv = each_csv[config['cols_of_interest']]
 
-print('done')
-# df_emis = pd.read_csv(url)
+    #Rename the Sex col
+    each_csv[config['nhs_sex_col']] = each_csv[config['nhs_sex_col']].replace(config['sex_rename'])
 
-# response = requests.get(url)
+    #Computing the ratio
+    each_adhd_counts = each_csv[each_csv[config['nhs_indicator_col']].isin(config['numerator'])]
+    each_all_counts = each_csv[each_csv[config['nhs_indicator_col']].isin(config['denominator'])]
 
-# with open(file_path, "wb") as f:
-#     f.write(response.content)
+    each_adhd_counts = each_adhd_counts.groupby(config['groupby_index'], as_index=False)[config['nhs_vaule_col']].sum()
+    each_adhd_counts = each_adhd_counts.rename(columns=config['rename_col_for_numerator'])
+    each_all_counts = each_all_counts.groupby(config['groupby_index'], as_index=False)[config['nhs_vaule_col']].sum()
+    each_all_counts = each_all_counts.rename(columns=config['rename_col_for_denominator'])
+
+    #Join
+    each_ratio = pd.merge(each_adhd_counts, each_all_counts, on=config['groupby_index'])
+    each_ratio = each_ratio.rename(columns=config['raname_cols_indices'])
+
+    #Computing the ratio
+    each_ratio[config['nhs_ratio_col']] = each_ratio[config['nhs_numerator_col']]/each_ratio[config['nhs_denominator_col']]
+    
+    #Need to set out the year
+
+    print(each_ratio)
+
 
 # # Read the CSV file into a Pandas DataFrame
 # ld_data_adhd = pd.read_csv(file_path)
