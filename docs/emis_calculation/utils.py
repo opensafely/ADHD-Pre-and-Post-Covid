@@ -4,6 +4,57 @@ from config import config
 import os
 import zipfile
 
+def getting_start_ends_dates(each_key):
+    """
+    Generates start and end dates for a given key.
+
+    Args:
+        each_key (str): A string key where the first two and last two characters represent years.
+
+    Returns:
+        tuple: A tuple containing the start date and end date as strings in the format 'DD/MM/YYYY'.
+
+    Example:
+        >>> getting_start_ends_dates('2122')
+        ('01/04/2021', '31/03/2022')
+    """
+
+    start_date = '01/04/20' + each_key[:2]
+    end_date = '31/03/20' + each_key[-2:]
+
+    return start_date, end_date
+
+def wrangling_table_to_opensafely_form(each_csv,each_key):
+
+    #Rename the Sex col
+    each_csv[config['nhs_sex_col']] = each_csv[config['nhs_sex_col']].replace(config['sex_rename'])
+
+    #Computing the ratio
+    each_adhd_counts = each_csv[each_csv[config['nhs_indicator_col']].isin(config['numerator'])]
+    each_all_counts = each_csv[each_csv[config['nhs_indicator_col']].isin(config['denominator'])]
+
+    each_adhd_counts = each_adhd_counts.groupby(config['groupby_index'], as_index=False)[config['nhs_vaule_col']].sum()
+    each_adhd_counts = each_adhd_counts.rename(columns=config['rename_col_for_numerator'])
+    each_all_counts = each_all_counts.groupby(config['groupby_index'], as_index=False)[config['nhs_vaule_col']].sum()
+    each_all_counts = each_all_counts.rename(columns=config['rename_col_for_denominator'])
+
+    #Join
+    each_ratio = pd.merge(each_adhd_counts, each_all_counts, on=config['groupby_index'])
+    each_ratio = each_ratio.rename(columns=config['raname_cols_indices'])
+
+    #Computing the ratio
+    each_ratio[config['nhs_ratio_col']] = each_ratio[config['nhs_numerator_col']]/each_ratio[config['nhs_denominator_col']]
+    
+    #Need to set out the year
+    start_date, end_date = utils.getting_start_ends_dates(each_key)
+    
+    each_ratio[config['interval_start']] = start_date
+    each_ratio[config['interval_end']] = end_date
+
+    each_ratio = each_ratio[config['cols_in_opensafely']]
+
+    return each_ratio
+
 def create_source_files_from_nhs_england(config):
     """
     Downloads files from URLs specified in the config dictionary, saves them to a specified directory,

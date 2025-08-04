@@ -30,4 +30,13 @@ config = {
     'nhs_ratio_col':'ratio',
     'nhs_denominator_col':'denominator',
     'nhs_numerator_col':'numerator',
+    'interval_start':'interval_start',
+    'interval_end':'interval_end',
+    'cols_in_opensafely' : [
+        'interval_start',
+        'interval_end',
+        'ratio',
+        'numerator',
+        'denominator'
+    ]
     }
