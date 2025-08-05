@@ -38,7 +38,7 @@ with open(readme_file_path,"r") as f:
     readme_string = f.read()
 
 table_to_markdown = combined_table_emis.to_markdown()
-output_string = readme_string + '/n' + table_to_markdown
+output_string = readme_string + '  ' + table_to_markdown
 
 with open(config['readme_path'], "w") as f:
     f.write(output_string)
