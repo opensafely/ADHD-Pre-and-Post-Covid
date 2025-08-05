@@ -19,7 +19,9 @@ We calculate ADHD prevalence for each year by computing the numerator and denomi
 
 
 ## Table 
-  |     | interval_start   | interval_end   |         ratio |   numerator |   denominator | sex    | age_band    |
+[place_table_here]: #
+
+|     | interval_start   | interval_end   |         ratio |   numerator |   denominator | sex    | age_band    |
 |----:|:-----------------|:---------------|--------------:|------------:|--------------:|:-------|:------------|
 |   0 | 2023-04-01       | 2024-03-31     | nan           |         nan |      69127630 | ALL    | ALL         |
 |   1 | 2023-04-01       | 2024-03-31     |   0.00320342  |        5845 |       1824615 | female | 0 to 9      |
