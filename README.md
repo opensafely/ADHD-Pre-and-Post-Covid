@@ -29,7 +29,7 @@ The [metadata of clinical codes]( https://www.opencodelists.org/) used in this s
 * [Attention Deficit Hyperactivity Disorder Medication](https://www.opencodelists.org/codelist/user/Adam/adhd-dmd/59d39fe1/#full-list)
 
 ## Supplementary Materials
-We calculate the ADHD prevalence in EMIS using open source data, the methodology and data can be found [in the docs folder](https://github.com/opensafely/ADHD-Pre-and-Post-Covid/tree/216eb6ec932888489a3d57c7bdb79054119b5220/docs/emis_calculation)
+We calculate the ADHD prevalence in EMIS using open source data, the methodology and data can be found [in the docs folder](https://github.com/opensafely/ADHD-Pre-and-Post-Covid/tree/main/docs/emis_calculation)
 
 ## Compliance
 
