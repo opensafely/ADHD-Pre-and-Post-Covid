@@ -70,7 +70,11 @@ has_adhd_cond = has_adhd_cod_date.is_not_null()
 #This looks at the incidence of ADHD medication in the population of ADHD
 measures.define_measure(
     name= f"Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months" + add_datestamp(),
-    numerator= has_registration & has_adhd_meds,
+    numerator= (
+        has_registration 
+        & has_adhd_meds 
+        & has_adhd_cond
+    ),
     denominator=(
         has_registration
         & has_adhd_cond
