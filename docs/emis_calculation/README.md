@@ -11,6 +11,8 @@ The raw data is downloaded through the following links:
 * [For 2022 to 2023](https://files.digital.nhs.uk/43/BD15AC/health_care_ld_sicbl_2022-23.csv)
 * [For 2023 to 2024](https://files.digital.nhs.uk/FC/187D35/health_care_ld_sicbl_2023-24.csv)
 
+Add notes on CCG and SICL
+
 ### Data Munging
 All the downloaded table are concatenated, and meta data are harmonised with the outputs from OpenSAFELY.
 
