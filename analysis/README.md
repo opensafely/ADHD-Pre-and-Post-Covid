@@ -26,3 +26,9 @@ In this section, all outputs are curated by the author
     * The age category is grouped at a larger age range in 35 and over to suppress small numbers.
     * The minimum size is floored at 20 to avoid possible secondary exposure.
     * The mean and medium of weeks are rounded.
+
+## Changes made
+* Table_3_without_ADHD_that_are_prescribed_ADHD_medication - Changes:
+    * We have applied a stricter condition of patients who have never had an ADHD diagnosis code. Thus, excluding the group of patients that have taken ADHD medication before their diagnosis.
+* Table_5_time_from_diagnosis_to_treatment – Changes:
+    * We included aggregates of age band and sex with ALL label – this is ensured we checked Simpson's paradox, a phenomenon where a trend appears in several groups of data but disappears or reverses when the groups are combined.
