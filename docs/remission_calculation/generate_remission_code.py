@@ -32,7 +32,7 @@ with open(readme_file_path,"r") as f:
 
 readme_selected_text = readme_string.split(config['anchor_in_readme'], 1)[0] + config['anchor_in_readme']
 
-table_to_markdown = combined_table_emis.to_markdown(index=False)
+table_to_markdown = remission_table.to_markdown(index=False)
 output_string = readme_selected_text + "\n\n" + table_to_markdown
 
 with open(config['readme_path'], "w") as f:

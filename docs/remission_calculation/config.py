@@ -7,4 +7,5 @@ config = {
     'code':'code',
     'remission_code_path':'codelists/nhsd-primary-care-domain-refsets-adhdrem_cod.csv',
     'readme_path':'docs/remission_calculation/README.md',
+    'anchor_in_readme':'[place_table_here]: #'
 }
