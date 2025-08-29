@@ -7,8 +7,16 @@ import matplotlib.transforms as transforms
 
 from config import nhs_palette
 
-#For single year 
 def single_year_table(table):
+    """
+    Transforms the input DataFrame to a pivot table showing 'ratio' values by 'age_band' and 'sex'.
+
+    Parameters:
+        table (pd.DataFrame): Input DataFrame containing at least the columns 'ratio', 'sex', and 'age_band'.
+
+    Returns:
+        pd.DataFrame: Pivot table with 'age_band' as index, 'sex' as columns, and 'ratio' as values.
+    """
 
     table = table[['ratio','sex','age_band']]
     table = table[~table['ratio'].isnull()]
@@ -17,8 +25,24 @@ def single_year_table(table):
 
     return table
 
-def grouped_by_demographics(table, demo, cols_to_sum = ['numerator','denominator'], 
-                            year_col = ['interval_start']):
+                            
+def grouped_by_demographics(table, demo, cols_to_sum = ['numerator','denominator'], year_col = ['interval_start']):
+    """
+    Aggregates and summarizes a table by specified demographic and year columns.
+
+    Parameters:
+        table (pd.DataFrame): The input DataFrame containing the data to be grouped and summarized.
+        demo (str): The name of the demographic column to group by (e.g., 'gender', 'age_group').
+        cols_to_sum (list of str, optional): List of column names to sum within each group. 
+            Defaults to ['numerator', 'denominator'].
+        year_col (list of str, optional): List of column names representing the year or interval to group by.
+            Defaults to ['interval_start'].
+
+    Returns:
+        pd.DataFrame: A DataFrame grouped by the specified demographic and year columns, 
+            with summed values for the specified columns and an additional 'ratio' column 
+            representing the percentage (numerator/denominator * 100) for each group.
+    """
 
     #Need to sum over
     combine_cols = year_col + [demo]
@@ -34,8 +58,21 @@ def grouped_by_demographics(table, demo, cols_to_sum = ['numerator','denominator
     return output
 
 
-def grouped_by_overall(table, cols_to_sum = ['numerator','denominator'], 
-                            year_col = ['interval_start']):
+def grouped_by_overall(table, cols_to_sum = ['numerator','denominator'], year_col = ['interval_start']):
+    """
+    Groups a pandas DataFrame by specified columns, sums selected columns, and computes a percentage ratio.
+
+    Args:
+        table (pd.DataFrame): The input DataFrame containing the data to be grouped and summarized.
+        cols_to_sum (list of str, optional): List of column names to sum. The first column is used as the numerator,
+            and the second as the denominator for the ratio calculation. Defaults to ['numerator', 'denominator'].
+        year_col (list of str, optional): List of column names to group by. Defaults to ['interval_start'].
+
+    Returns:
+        pd.DataFrame: A DataFrame grouped by `year_col`, with summed columns in `cols_to_sum` and an additional
+            'ratio' column representing the percentage (numerator/denominator * 100).
+    """
+                            
 
     #Need to sum over
     combine_cols = year_col
@@ -51,6 +88,42 @@ def grouped_by_overall(table, cols_to_sum = ['numerator','denominator'],
     return output
 
 def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, age_group_old, nhs_palette = nhs_palette ):
+    """
+    Plots ADHD prevalence and count charts by sex and age bands.
+    This function creates a 2x2 grid of subplots visualizing ADHD prevalence (as a percentage)
+    and counts (as bar plots) over time, split by sex and three age groups (young, middle, old).
+    Each subplot contains a line plot for prevalence and a bar plot for counts, with legends
+    and axis labels appropriately set.
+    Parameters
+    ----------
+    sex_group : pandas.DataFrame
+        DataFrame containing ADHD prevalence and count data grouped by sex. Must include columns:
+        'interval_start', 'ratio', 'numerator', 'sex'.
+    age_group_young : pandas.DataFrame
+        DataFrame containing ADHD prevalence and count data for young age bands. Must include columns:
+        'interval_start', 'ratio', 'numerator', 'age_band'.
+    age_group_middle : pandas.DataFrame
+        DataFrame containing ADHD prevalence and count data for middle age bands. Must include columns:
+        'interval_start', 'ratio', 'numerator', 'age_band'.
+    age_group_old : pandas.DataFrame
+        DataFrame containing ADHD prevalence and count data for old age bands. Must include columns:
+        'interval_start', 'ratio', 'numerator', 'age_band'.
+    nhs_palette : dict or list, optional
+        Color palette to use for the plots. Should be compatible with seaborn's palette argument.
+    Returns
+    -------
+    fig : matplotlib.figure.Figure
+        The matplotlib Figure object containing the plots.
+    axes : numpy.ndarray
+        Array of matplotlib Axes objects for the subplots.
+    Notes
+    -----
+    - Each subplot combines a line plot (prevalence) and a bar plot (counts) with a shared x-axis.
+    - Legends are customized to display both prevalence and count information.
+    - The function assumes the input DataFrames are properly formatted and indexed.
+    """
+
+    
     fig, axes = plt.subplots(2, 2, figsize=(15.7, 15.3))  # A4 landscape in inches
 
     # By sex
@@ -68,7 +141,7 @@ def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, ag
     axes[0, 0].legend((*handles1, *handles2), (*len(labels1)*[''], *labels2),
              loc='best', ncol=2, handlelength=3, edgecolor='black', handletextpad = 0.1,
              labelspacing = 0.1, columnspacing = 0.1,
-)
+             )
     ax_tmp0.get_legend().remove()
 
     # Young age bands
@@ -86,7 +159,7 @@ def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, ag
     axes[0, 1].legend((*handles1, *handles2), (*len(labels1)*[''], *labels2),
              loc='best', ncol=2, handlelength=3, edgecolor='black',handletextpad = 0.1,
              labelspacing = 0.1, columnspacing = 0.1
-)
+             )
     ax_tmp1.get_legend().remove()
 
     # Middle age bands
@@ -104,7 +177,7 @@ def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, ag
     axes[1, 0].legend((*handles1, *handles2), (*len(labels1)*[''], *labels2),
              loc='best', ncol=2, handlelength=3, edgecolor='black',handletextpad = 0.1,
              labelspacing = 0.1, columnspacing = 0.1
-)
+             )
     ax_tmp2.get_legend().remove()
 
     # Old age bands
@@ -121,7 +194,7 @@ def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, ag
     axes[1, 1].legend((*handles1, *handles2), (*len(labels1)*[''], *labels2),
              loc='best', ncol=2, handlelength=3, edgecolor='black',handletextpad = 0.1,
              labelspacing = 0.1, columnspacing = 0.1
-)
+             )
     ax_tmp3.get_legend().remove()
 
     plt.tight_layout()
@@ -130,6 +203,20 @@ def plot_adhd_prevalence_charts(sex_group, age_group_young, age_group_middle, ag
     return fig, axes
 
 def get_sex_and_age_groups(table):
+    """
+    Groups the input table by sex and age bands, and further splits age groups into young, middle, and old categories.
+
+    Args:
+        table (pd.DataFrame): The input DataFrame containing demographic data with 'sex' and 'age_band' columns.
+
+    Returns:
+        tuple: A tuple containing:
+            - sex_group (pd.DataFrame): Data grouped by 'sex'.
+            - age_group (pd.DataFrame): Data grouped by 'age_band'.
+            - age_group_young (pd.DataFrame): Data for age bands '0 to 9', '10 to 17', '18 to 24'.
+            - age_group_middle (pd.DataFrame): Data for age bands '25 to 34', '35 to 44', '45 to 54', '55 to 64'.
+            - age_group_old (pd.DataFrame): Data for age bands '65 to 74', '75 and over'.
+    """
     sex_group = grouped_by_demographics(table, 'sex')
     age_group = grouped_by_demographics(table, 'age_band')
     age_group_young = age_group[age_group['age_band'].isin(['0 to 9', '10 to 17', '18 to 24'])]
