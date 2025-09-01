@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 import matplotlib.ticker as mtick
 import matplotlib.transforms as transforms
@@ -32,7 +33,7 @@ def grouped_by_demographics(table, demo, cols_to_sum = ['numerator','denominator
 
     Parameters:
         table (pd.DataFrame): The input DataFrame containing the data to be grouped and summarized.
-        demo (str): The name of the demographic column to group by (e.g., 'gender', 'age_group').
+        demo (str): The name of the demographic column to group by (e.g., 'sex', 'age_group').
         cols_to_sum (list of str, optional): List of column names to sum within each group. 
             Defaults to ['numerator', 'denominator'].
         year_col (list of str, optional): List of column names representing the year or interval to group by.
@@ -227,28 +228,40 @@ def get_sex_and_age_groups(table):
 
 def watermark_plot(axes, watermark_string):
     """
-    Adds a watermark text to each subplot in the given axes.
+    Adds a watermark text to one or multiple matplotlib axes.
 
     Parameters
     ----------
-    axes : numpy.ndarray or matplotlib.axes.Axes
-        An array of matplotlib Axes objects or a single Axes object to which the watermark will be added.
+    axes : matplotlib.axes.Axes or array-like of Axes
+        The axes object(s) to which the watermark will be added. Can be a single Axes instance or an array-like collection of Axes.
     watermark_string : str
-        The text to be used as the watermark.
+        The text to use as the watermark.
 
     Returns
     -------
-    axes : numpy.ndarray or matplotlib.axes.Axes
-        The axes with the watermark text added to each subplot.
+    matplotlib.axes.Axes or array-like of Axes
+        The axes object(s) with the watermark added.
+
+    Notes
+    -----
+    The watermark is placed at the center of each axes, with a gray color, partial transparency, and rotated by 30 degrees.
     """
 
-    for ax in axes.flat:
-        ax.text(
-            0.5, 0.5, watermark_string,
-            transform=ax.transAxes,
-            fontsize=50, color='gray', alpha=0.5,
-            ha='center', va='center', rotation=30
-        )
+    if hasattr(axes, "__len__"):
+        for ax in axes.flat:
+            ax.text(
+                0.5, 0.5, watermark_string,
+                transform=ax.transAxes,
+                fontsize=50, color='gray', alpha=0.5,
+                ha='center', va='center', rotation=30
+            )
+    else:
+        axes.text(
+                0.5, 0.5, watermark_string,
+                transform=axes.transAxes,
+                fontsize=50, color='gray', alpha=0.5,
+                ha='center', va='center', rotation=30
+            )
     return axes
     
 def plot_time_from_diagnosis_to_medication(time_between_dia_and_med, nhs_palette):
@@ -409,6 +422,50 @@ def plot_monthly_interval_charts(table3_percentage, nhs_palette):
     plt.subplots_adjust(hspace=0.4)
     return fig, axes
 
+def create_mpl_ax(ax=None):
+    """Helper function for when a single plot axis is needed.
+
+    Parameters
+    ----------
+    ax : AxesSubplot, optional
+        If given, this subplot is used to plot in instead of a new figure being
+        created.
+
+    Returns
+    -------
+    fig : Figure
+        If `ax` is None, the created figure.  Otherwise the figure to which
+        `ax` is connected.
+    ax : AxesSubplot
+        The created axis if `ax` is None, otherwise the axis that was passed
+        in.
+
+    Notes
+    -----
+    This function imports `matplotlib.pyplot`, which should only be done to
+    create (a) figure(s) with ``plt.figure``.  All other functionality exposed
+    by the pyplot module can and should be imported directly from its
+    Matplotlib module.
+
+    See Also
+    --------
+    create_mpl_fig
+
+    Examples
+    --------
+    A plotting function has a keyword ``ax=None``.  Then calls:
+
+    >>> from statsmodels.graphics import utils
+    >>> fig, ax = utils.create_mpl_ax(ax)
+    """
+    if ax is None:
+        plt = _import_mpl()
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+    else:
+        fig = ax.figure
+
+    return fig, ax
 
 def mean_diff_plot(m1, m2, sd_limit=1.96, ax=None, scatter_kwds=None,
                    mean_line_kwds=None, limit_lines_kwds=None):
@@ -552,3 +609,65 @@ def mean_diff_plot(m1, m2, sd_limit=1.96, ax=None, scatter_kwds=None,
     ax.tick_params(labelsize=13)
     fig.tight_layout()
     return fig
+
+def plot_bland_altman(table_2_tpp, table_2_emis, bland_altman_plt, custom_scaling = False):
+    """
+    Generates a Bland–Altman plot to compare ADHD diagnosis prevalence between TPP and EMIS+Cegedim datasets.
+
+    Parameters
+    ----------
+    table_2_tpp : pandas.DataFrame
+        DataFrame containing prevalence ratios from the TPP dataset.
+    table_2_emis : pandas.DataFrame
+        DataFrame containing prevalence ratios from the EMIS+Cegedim dataset.
+    bland_altman_plt : dict
+        Dictionary containing plot configuration, including:
+            - 'joining_cols': list of column names to join on.
+            - 'suffixes': tuple of suffixes to apply to overlapping columns.
+    custom_scaling : bool, optional
+        If True, scales the y-axis limits by 1.4 for custom visualization. Default is False.
+
+    Returns
+    -------
+    f : matplotlib.figure.Figure
+        The matplotlib Figure object containing the plot.
+    ax : matplotlib.axes.Axes
+        The matplotlib Axes object containing the plot.
+
+    Notes
+    -----
+    - The function merges the two input DataFrames on specified columns, drops rows with missing values,
+      and plots the Bland–Altman plot using the 'ratio_tpp' and 'ratio_emis' columns.
+    - The plot visualizes the mean and difference in prevalence ratios between the two datasets.
+    """
+
+
+    joined_data = table_2_tpp.merge(
+        table_2_emis,
+        how='left',
+        on=bland_altman_plt['joining_cols'],
+        suffixes=bland_altman_plt['suffixes']
+    )
+    # Clean the join
+    joined_data = joined_data.dropna()
+
+    f, ax = plt.subplots(1, figsize=(8, 5))
+    mean_diff_plot(
+        joined_data['ratio_tpp'] * 100,
+        joined_data['ratio_emis'] * 100,
+        ax=ax
+    )
+
+    ax.set_title(
+        "Bland–Altman plot between ADHD Diagnosis\nPrevalence between TPP and EMIS+Cegedim",
+        fontsize=18
+    )
+    ax.set_ylabel("Prevalence from TPP minus\nPrevalence from EMIS+Cegedim, %")
+    ax.set_xlabel("Mean Prevalence TPP and EMIS+Cegedim, %")
+
+    if custom_scaling:
+        y_lower, y_upper = ax.get_ylim()
+        ax.set_ylim([y_lower * 1.4, y_upper * 1.4])
+
+    plt.tight_layout()
+    return f, ax

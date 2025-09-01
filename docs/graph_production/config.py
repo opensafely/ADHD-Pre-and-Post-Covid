@@ -16,9 +16,11 @@ monthly_interval_plot = {
 
 bland_altman_plt = {
     'file_path_emis':'docs/emis_calculation/emis_measure.csv',
-    'file_path_tpp' : 'output/Table_2_Prevalence_of_ADHD_Diagnosis.csv'
-    'file_name':'docs/graph_production/Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months.jpeg',
+    'file_path_tpp' : 'output/Table_2_Prevalence_of_ADHD_Diagnosis.csv',
+    'file_name':'docs/graph_production/Bland_Altman_plot_between_ADHD_Diagnosis_Prevalence.jpeg',
     'watermark':'TEST DATA\nNOT REAL',
+    'joining_cols' : ['interval_start','interval_end','sex','age_band'],
+    'suffixes' : ('_tpp','_emis'),
 }
 
 dia_plots = {

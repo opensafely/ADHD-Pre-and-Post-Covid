@@ -13,6 +13,9 @@ This folder contains scripts and configuration files used to generate visualizat
 ## Comparing Prevalence
 ![Prevalence Plot](/docs/graph_production/Table_2_Prevalence_of_ADHD_Diagnosis.jpeg)
 
+## Ploting the Bland-Altman plot
+![Bland-Altman plot](/docs/graph_production/Bland_Altman_plot_between_ADHD_Diagnosis_Prevalence.jpeg)
+
 ## Comparing Monthly Intervals
 ![Monthly Intervals](/docs/graph_production/Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months.jpeg)
 

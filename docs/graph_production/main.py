@@ -1,7 +1,12 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from config import dia_plots, nhs_palette, user_time_plots, monthly_interval_plot
+from config import (dia_plots, 
+                    nhs_palette, 
+                    user_time_plots, 
+                    monthly_interval_plot, 
+                    bland_altman_plt
+)
 import utils 
 
 """
@@ -28,7 +33,15 @@ fig.savefig(dia_plots['file_name'], format="jpeg", dpi=300)
 Ploting the Bland-Altman plot
 """
 
+table_2_tpp = pd.read_csv(bland_altman_plt['file_path_tpp']) #Change for TPP
+table_2_emis = pd.read_csv(bland_altman_plt['file_path_emis'])
 
+# Call the function
+fig, axes = utils.plot_bland_altman(table_2_tpp, table_2_emis, bland_altman_plt, custom_scaling = False)
+
+axes = utils.watermark_plot(axes,bland_altman_plt['watermark'])
+
+plt.savefig(bland_altman_plt['file_name'], format="jpeg", dpi=300)
 
 """
 Ploting tables with monthly intervals
