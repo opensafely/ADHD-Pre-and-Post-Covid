@@ -225,4 +225,30 @@ def get_sex_and_age_groups(table):
     return sex_group, age_group, age_group_young, age_group_middle, age_group_old
 
 
+def watermark_plot(axes, watermark_string):
+    """
+    Adds a watermark text to each subplot in the given axes.
+
+    Parameters
+    ----------
+    axes : numpy.ndarray or matplotlib.axes.Axes
+        An array of matplotlib Axes objects or a single Axes object to which the watermark will be added.
+    watermark_string : str
+        The text to be used as the watermark.
+
+    Returns
+    -------
+    axes : numpy.ndarray or matplotlib.axes.Axes
+        The axes with the watermark text added to each subplot.
+    """
+
+    for ax in axes.flat:
+        ax.text(
+            0.5, 0.5, watermark_string,
+            transform=ax.transAxes,
+            fontsize=50, color='gray', alpha=0.5,
+            ha='center', va='center', rotation=30
+        )
+    return axes
+    
 
