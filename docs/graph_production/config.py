@@ -8,6 +8,19 @@ user_time_plots = {
     'watermark':'TEST DATA - NOT REAL',
 }
 
+monthly_interval_plot = {
+    'file_path':'output/Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months.csv',
+    'file_name':'docs/graph_production/Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months.jpeg',
+    'watermark':'TEST DATA\nNOT REAL',
+}
+
+bland_altman_plt = {
+    'file_path_emis':'docs/emis_calculation/emis_measure.csv',
+    'file_path_tpp' : 'output/Table_2_Prevalence_of_ADHD_Diagnosis.csv'
+    'file_name':'docs/graph_production/Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months.jpeg',
+    'watermark':'TEST DATA\nNOT REAL',
+}
+
 dia_plots = {
     'file_path':'docs/emis_calculation/emis_measure.csv',
     'file_name':'docs/graph_production/Table_2_Prevalence_of_ADHD_Diagnosis.jpeg',

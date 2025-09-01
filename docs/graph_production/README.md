@@ -10,6 +10,11 @@ This folder contains scripts and configuration files used to generate visualizat
 
 # Examples of graphs
 
+## Comparing Prevalence
 ![Prevalence Plot](/docs/graph_production/Table_2_Prevalence_of_ADHD_Diagnosis.jpeg)
 
+## Comparing Monthly Intervals
+![Monthly Intervals](/docs/graph_production/Table_3_percentage_of_people_with_ADHD_then_have_had_meds_in_the_last_6_months.jpeg)
+
+## Time between Diagnosis to Medication
 ![Time between Diagonsis to Medication](/docs/graph_production/Table_5_time_from_diagnosis_to_treatment.jpeg)

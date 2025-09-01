@@ -1,7 +1,7 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from config import dia_plots, nhs_palette, user_time_plots
+from config import dia_plots, nhs_palette, user_time_plots, monthly_interval_plot
 import utils 
 
 """
@@ -23,6 +23,25 @@ axes[1, 1].set_title(dia_plots['bottom_right']['title'])
 axes = utils.watermark_plot(axes,dia_plots['watermark'])
 
 fig.savefig(dia_plots['file_name'], format="jpeg", dpi=300)
+
+"""
+Ploting the Bland-Altman plot
+"""
+
+
+
+"""
+Ploting tables with monthly intervals
+"""
+
+table3_percentage = pd.read_csv(monthly_interval_plot['file_path'])
+
+fig, axes = utils.plot_monthly_interval_charts(table3_percentage, nhs_palette)
+
+axes = utils.watermark_plot(axes,monthly_interval_plot['watermark'])
+
+fig.savefig(monthly_interval_plot['file_name'], format="jpeg", dpi=300)
+
 
 """
 Ploting user defining tables
