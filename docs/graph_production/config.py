@@ -5,6 +5,7 @@ nhs_palette = ["#003087",'#7C2855', "#DA291C", "#ED8B00", "#006747"]
 dia_plots = {
     'file_path':'docs/emis_calculation/emis_measure.csv',
     'file_name':'docs/graph_production/Table_2_Prevalence_of_ADHD_Diagnosis.jpeg',
+    'watermark':'EMIS + Cegedim',
     'top_left':{
         'title':'ADHD Diagnosis Prevalence and Counts by Sex',
     },

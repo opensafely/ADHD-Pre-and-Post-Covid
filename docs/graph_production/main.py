@@ -15,6 +15,6 @@ axes[0, 1].set_title(dia_plots['top_right']['title'])
 axes[1, 0].set_title(dia_plots['bottom_left']['title'])
 axes[1, 1].set_title(dia_plots['bottom_right']['title'])
 
-axes = utils.watermark_plot(axes,'EMIS + Cegedim')
+axes = utils.watermark_plot(axes,dia_plots['watermark'])
 
 fig.savefig(dia_plots['file_name'], format="jpeg", dpi=300)
