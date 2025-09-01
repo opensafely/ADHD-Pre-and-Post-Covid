@@ -30,9 +30,8 @@ Ploting user defining tables
 
 time_between_dia_and_med = pd.read_csv(user_time_plots['file_path'])
 
+fig, axes = utils.plot_time_from_diagnosis_to_medication(time_between_dia_and_med, nhs_palette)
 
+axes = utils.watermark_plot(axes,user_time_plots['watermark'])
 
-# Usage
-fig, axes = plot_time_from_diagnosis_to_medication(time_between_dia_and_med, nhs_palette)
-
-fig.savefig("Table_5_time_from_diagnosis_to_treatment.jpeg", format="jpeg", dpi=300)
+fig.savefig(user_time_plots['file_name'], format="jpeg", dpi=300)
