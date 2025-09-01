@@ -251,4 +251,97 @@ def watermark_plot(axes, watermark_string):
         )
     return axes
     
+def plot_time_from_diagnosis_to_medication(time_between_dia_and_med, nhs_palette):
+    """
+    Plots the median time (in weeks) from diagnosis to medication for ADHD patients, split by sex and age band.
 
+    This function creates two subplots:
+    - The first subplot displays data for male patients.
+    - The second subplot displays data for female patients.
+
+    Each subplot contains:
+    - A line plot showing the median time from diagnosis to medication per year, colored by age band.
+    - A bar plot (on a secondary y-axis) showing the count of patients per year, also colored by age band.
+
+    Parameters
+    ----------
+    time_between_dia_and_med : pandas.DataFrame
+        DataFrame containing columns 'year_of_medication', 'sex', 'age_band', 'median', and 'size'.
+        Rows with 'ALL' in any column are excluded from the plots.
+
+    nhs_palette : list or dict
+        Color palette to use for age bands in the plots.
+
+    Returns
+    -------
+    fig : matplotlib.figure.Figure
+        The matplotlib Figure object containing the plots.
+
+    axes : numpy.ndarray of matplotlib.axes.Axes
+        Array of Axes objects for the male and female subplots.
+    """
+    # Remove rows with 'ALL' in any column
+    time_between_dia_and_med = time_between_dia_and_med[~time_between_dia_and_med.isin(['ALL']).any(axis=1)]
+    # Convert year_of_medication to year string
+    time_between_dia_and_med['year'] = time_between_dia_and_med['year_of_medication'].astype(str).str[:4]
+
+    # Split by sex
+    time_males_table = time_between_dia_and_med[time_between_dia_and_med['sex'].isin(['male'])]
+    time_females_table = time_between_dia_and_med[time_between_dia_and_med['sex'].isin(['female'])]
+
+    fig, axes = plt.subplots(2, 1, figsize=(12, 12))
+
+    # Males plot
+    sns.lineplot(
+        x="year",
+        y="median",
+        hue="age_band",
+        data=time_males_table,
+        ax=axes[0],
+        palette=nhs_palette,
+    )
+    axes[0].set_ylabel("Median Time Weeks")
+    axes[0].set_xlabel("Year")
+    axes[0].set_title("Male - Time between Diagnosis to Medication")
+
+    ax_tmp = axes[0].twinx()
+    sns.barplot(
+        x="year",
+        y="size",
+        hue="age_band",
+        data=time_males_table,
+        palette=nhs_palette,
+        alpha=0.3,
+        dodge=True,
+        ax=ax_tmp
+    )
+    ax_tmp.set_ylabel("Count of Patients")
+
+    # Females plot
+    sns.lineplot(
+        x="year",
+        y="median",
+        hue="age_band",
+        data=time_females_table,
+        ax=axes[1],
+        palette=nhs_palette,
+    )
+    axes[1].set_ylabel("Median Time Weeks")
+    axes[1].set_xlabel("Year")
+    axes[1].set_title("Female - Time between Diagnosis to Medication")
+
+    ax_tmp = axes[1].twinx()
+    sns.barplot(
+        x="year",
+        y="size",
+        hue="age_band",
+        data=time_females_table,
+        palette=nhs_palette,
+        alpha=0.3,
+        dodge=True,
+        ax=ax_tmp
+    )
+    ax_tmp.set_ylabel("Count of Patients")
+
+    plt.tight_layout()
+    return fig, axes

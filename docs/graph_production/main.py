@@ -1,7 +1,12 @@
 import pandas as pd
-from config import dia_plots
+import seaborn as sns
+import matplotlib.pyplot as plt
+from config import dia_plots, nhs_palette, user_time_plots
 import utils 
 
+"""
+Ploting measures
+"""
 # Loading 
 ADHD_dia_data = pd.read_csv(dia_plots['file_path'])
 
@@ -15,6 +20,18 @@ axes[0, 1].set_title(dia_plots['top_right']['title'])
 axes[1, 0].set_title(dia_plots['bottom_left']['title'])
 axes[1, 1].set_title(dia_plots['bottom_right']['title'])
 
-axes = utils.watermark_plot(axes,'EMIS + Cegedim')
+axes = utils.watermark_plot(axes,dia_plots['watermark'])
 
 fig.savefig(dia_plots['file_name'], format="jpeg", dpi=300)
+
+"""
+Ploting user defining tables
+"""
+
+time_between_dia_and_med = pd.read_csv(user_time_plots['file_path'])
+
+fig, axes = utils.plot_time_from_diagnosis_to_medication(time_between_dia_and_med, nhs_palette)
+
+axes = utils.watermark_plot(axes,user_time_plots['watermark'])
+
+fig.savefig(user_time_plots['file_name'], format="jpeg", dpi=300)
