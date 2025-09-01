@@ -8,4 +8,4 @@ This folder contains scripts and configuration files used to generate visualizat
 
 # Examples of graphs
 
-![Prevalence Plot](docs/graph_production/Table_2_Prevalence_of_ADHD_Diagnosis.jpeg)
+![Prevalence Plot](/docs/graph_production/Table_2_Prevalence_of_ADHD_Diagnosis.jpeg)
