@@ -18,7 +18,7 @@ bland_altman_plt = {
     'file_path_emis':'docs/emis_calculation/emis_measure.csv',
     'file_path_tpp' : 'output/Table_2_Prevalence_of_ADHD_Diagnosis.csv',
     'file_name':'docs/graph_production/Bland_Altman_plot_between_ADHD_Diagnosis_Prevalence.jpeg',
-    'watermark':'TEST DATA\nNOT REAL',
+    'watermark':'TEST DATA - NOT REAL',
     'joining_cols' : ['interval_start','interval_end','sex','age_band'],
     'suffixes' : ('_tpp','_emis'),
 }
