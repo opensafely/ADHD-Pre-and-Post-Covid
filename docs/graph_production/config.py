@@ -2,6 +2,12 @@
 # From https://www.england.nhs.uk/nhsidentity/identity-guidelines/colours/
 nhs_palette = ["#003087",'#7C2855', "#DA291C", "#ED8B00", "#006747"]
 
+user_time_plots = {
+    'file_path':'output/Table_5_time_from_diagnosis_to_treatment.csv',
+    'file_name':'docs/graph_production/Table_5_time_from_diagnosis_to_treatment.csv',
+    'watermark':'TEST DATA - NOT REAL',
+}
+
 dia_plots = {
     'file_path':'docs/emis_calculation/emis_measure.csv',
     'file_name':'docs/graph_production/Table_2_Prevalence_of_ADHD_Diagnosis.jpeg',
