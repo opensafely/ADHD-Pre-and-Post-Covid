@@ -19,7 +19,7 @@ All the downloaded table are concatenated, and meta data are harmonised with the
 ### Prevalence Calculations
 We calculate ADHD prevalence for each year by computing the numerator and denominator as the number patients with ADHD with the indicator `['LDOB089','LDOB091']` and the total sample with the indicator `['LDOB003A' , 'LDOB003B']`. The prevalence are grouped by age, sex and year.
 
-
-[## Table 
+<!--
+## Table 
 [place_table_here]: #
-]
+ -->
