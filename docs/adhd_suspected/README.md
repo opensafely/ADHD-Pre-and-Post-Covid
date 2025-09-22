@@ -1,7 +1,7 @@
 > [!IMPORTANT]  
 > This page has been redacted to avoid risk linking data. For details see [The NHS England OpenSAFELY COVID-19 service - privacy notice]( https://digital.nhs.uk/coronavirus/coronavirus-covid-19-response-information-governance-hub/the-nhs-england-opensafely-covid-19-service-privacy-notice)
 >
-> Unredacted version can be found in [NHS Digital GitHub Org](https://github.com/NHSDigital/datascience-seminars/tree/main/All_materials/20250905_Displaying_SNOMED_usage_for_ADHD_Remission_Code)
+> Unredacted version can be found in [NHS Digital GitHub Org](https://github.com/NHSDigital/datascience-seminars/tree/main/All_materials/20250922_ADHD_Suspected_SNOMED)
 
 # Discussion of SNOMED code for Suspected ADHD
 
