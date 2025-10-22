@@ -5,6 +5,9 @@
 
 This repo is the [open codebase](https://www.gov.uk/service-manual/service-standard/point-12-make-new-source-code-open) for the approved [OpenSAFELY project #181: Examining changes in ADHD diagnosis and pathways in primary care pre and post COVID pandemic](https://www.opensafely.org/approved-projects/#project-181). 
 
+> [!NOTE]  
+> We are in the process of publishing our interim report - we hope to publish on the report and CSV on [NHS England Digital website](https://digital.nhs.uk/).
+
 Work is carried out by the [NHS England Data Science Team][ds-site]
 
 Detail description of the project can be found on our [protocol]( https://github.com/opensafely/ADHD-Pre-and-Post-Covid/tree/main/protocol%20)
