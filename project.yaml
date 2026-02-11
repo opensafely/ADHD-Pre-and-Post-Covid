@@ -2,7 +2,7 @@ version: '3.0'
 
 # Ignore this`expectation` block. It is required but not used, and will be removed in future versions.
 expectations:
-  population_size: 5000
+  population_size: 50
 
 actions:
 #   generate_dataset:
