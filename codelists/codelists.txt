@@ -5,6 +5,8 @@ user/kquan/adhd-codelist-nhs-england/3ca0408f
 user/kquan/adhd-codelist-nhs-england-dmd/2390cd5a
 user/Adam/adhd-dmd/59d39fe1/
 phc/2ww-referral-colorectal/7eac259d/
+nhsd-primary-care-domain-refsets/4in1vac_cod/20250912/
+nhsd-primary-care-domain-refsets/lipidtheradv_cod/20250912/
 
 opensafely/ethnicity/2020-04-27
 opensafely/methylphenidate-dmd/1e051e13

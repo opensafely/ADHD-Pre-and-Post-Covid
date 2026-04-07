@@ -42,6 +42,18 @@
       "downloaded_at": "2026-02-18 20:18:17.767467Z",
       "sha": "9cce1f1a4a301218eddaea241b730322e02703e9"
     },
+    "nhsd-primary-care-domain-refsets-4in1vac_cod.csv": {
+      "id": "nhsd-primary-care-domain-refsets/4in1vac_cod/20250912",
+      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/4in1vac_cod/20250912/",
+      "downloaded_at": "2026-02-19 11:50:20.351616Z",
+      "sha": "9da7b4926c7ccd50b18f18f2d86da3c8fa08d2c4"
+    },
+    "nhsd-primary-care-domain-refsets-lipidtheradv_cod.csv": {
+      "id": "nhsd-primary-care-domain-refsets/lipidtheradv_cod/20250912",
+      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/lipidtheradv_cod/20250912/",
+      "downloaded_at": "2026-02-24 12:17:17.539459Z",
+      "sha": "164fca8d446e2c688de5a518e94ab16b524c032e"
+    },
     "opensafely-ethnicity.csv": {
       "id": "opensafely/ethnicity/2020-04-27",
       "url": "https://www.opencodelists.org/codelist/opensafely/ethnicity/2020-04-27/",
